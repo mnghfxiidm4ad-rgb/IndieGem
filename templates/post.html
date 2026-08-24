@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ game.name }} | IndieGem</title>
+  <meta name="description" content="{{ game.summary.excerpt }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ game.name }} | IndieGem">
+  <meta property="og:description" content="{{ game.summary.excerpt }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ game.header_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="IndieGem">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">{{ json_ld|safe }}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/favicon.svg" alt="">
+        <div>
+          <strong>IndieGem</strong>
+          <span>インディージェム</span>
+        </div>
+      </a>
+      <div class="updated">更新 {{ game.updated_at_jst }}</div>
+    </div>
+  </header>
+
+  <main class="wrap post">
+    <nav class="crumb" aria-label="パンくずリスト">
+      <a href="../index.html">IndieGem</a>
+      <span>/</span>
+      <span>記事</span>
+      <span>/</span>
+      <span>{{ game.name }}</span>
+    </nav>
+
+    <div class="post-cover">
+      <img src="{{ game.header_image }}" alt="{{ game.name }}">
+    </div>
+
+    <h1>{{ game.name }}</h1>
+    <div class="meta-row">
+      <span class="pill">{{ game.developers|join(', ') or '開発元不明' }}</span>
+      <span class="pill">{{ game.price_formatted }}{% if game.discount_percent > 0 %}（{{ game.discount_percent }}% OFF）{% endif %}</span>
+      <span class="pill good">{{ game.review_score_desc }} {{ game.positive_percent }}%</span>
+      <span class="pill">同接 {{ '{:,}'.format(game.ccu) }}{% if game.ccu_delta > 0 %}（+{{ '{:,}'.format(game.ccu_delta) }}）{% endif %}</span>
+    </div>
+
+    <aside class="ad-slot" aria-label="広告枠">AdSense 掲載スペース</aside>
+
+    <section class="panel">
+      <h2>AI 3行サマリー</h2>
+      <ol class="summary-list">
+        {% for line in game.summary.three_line_summary %}
+        <li>{{ line }}</li>
+        {% endfor %}
+      </ol>
+      <p class="lead"><strong>なぜ今話題なのか：</strong>{{ game.summary.why_now }}</p>
+      <p class="lead"><strong>バズった経緯：</strong>{{ game.summary.buzz_story }}</p>
+    </section>
+
+    <div class="split">
+      <section class="panel">
+        <h2>プレイヤーが評価する沼ポイント</h2>
+        <ul class="summary-list swamp">
+          {% for item in game.summary.swamp_points %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>注意すべきポイント・賛否両論な点</h2>
+        <ul class="summary-list caveat">
+          {% for item in game.summary.caveats %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>動作環境・言語目安</h2>
+      <p class="lead">{{ game.summary.specs_note }}</p>
+      <p class="lead">{{ game.summary.language_note }}</p>
+      {% if game.pc_requirements %}
+      <p class="lead"><small>{{ game.pc_requirements }}</small></p>
+      {% endif %}
+    </section>
+
+    <section class="panel">
+      <h2>公式ストア＆価格比較</h2>
+      <p class="lead">アフィリエイトリンクの配置エリアです。Steam 公式ページと、比較用の予備枠を用意しています。</p>
+      <div class="cta">
+        <a class="btn-primary" href="{{ game.steam_url }}" rel="noopener sponsored" target="_blank">Steam で見る</a>
+        <a class="btn-ghost" href="{{ game.steam_url }}" rel="noopener sponsored" target="_blank">価格比較（準備中）</a>
+      </div>
+    </section>
+
+    <aside class="ad-slot" aria-label="広告枠">AdSense 掲載スペース</aside>
+    <a class="back" href="../index.html">トップへ戻る</a>
+  </main>
+</body>
+</html>

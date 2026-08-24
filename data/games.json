@@ -1,0 +1,1322 @@
+{
+  "updated_at": "2026-08-24T23:17:03+09:00",
+  "games": [
+    {
+      "app_id": 413150,
+      "name": "Stardew Valley",
+      "developers": [
+        "ConcernedApe"
+      ],
+      "publishers": [
+        "ConcernedApe"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1786554168",
+      "short_description": "「スターデュー バレー」で、プレイヤーは祖父から古い農場を受け継ぎます。使い古された道具と少しのお金を手に、新たな生活を始めましょう。自給自足の生活で生き抜く術を学び、草木の生い茂る土地を繁栄させることができるか、腕の見せ所です。",
+      "price_formatted": "¥ 1,480",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 1033819,
+      "total_positive": 1018104,
+      "positive_percent": 98.5,
+      "ccu": 92057,
+      "ccu_prev": 89755,
+      "ccu_delta": 2302,
+      "ccu_display": "92,057 +2,302",
+      "release_date": "2016年2月27日",
+      "coming_soon": false,
+      "supported_languages": "英語, ドイツ語, スペイン語 - スペイン, 日本語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, フランス語, イタリア語, ハンガリー語, 韓国語, トルコ語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows Vista or greater プロセッサー: 2 Ghz メモリー: 2 GB RAM グラフィック: 256 mb video memory, shader model 3.0+ DirectX: Version 10 ストレージ: 500 MB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/413150/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:57:00+09:00",
+      "updated_at_jst": "2026-08-24 22:57 JST",
+      "summarized_at": "2026-08-24T22:57:18+09:00",
+      "summary": {
+        "excerpt": "祖父の農場を受け継ぎ、新たな生活を始めるスローライフシミュレーション。農業や釣り、町の人々との交流など、無限に遊べる圧倒的ボリュームで世界中を魅了する神ゲーです。",
+        "why_now": "リリースから長期間が経過した現在でも同時接続プレイヤー数が9万人を超えており、98.5%という驚異的な高評価とともに世界中で愛され続けているため。",
+        "buzz_story": "個人クリエイターConcernedApe氏が開発した本作は、発売直後から圧倒的な完成度とコンテンツ量で話題となり爆発的にヒット。長年にわたる手厚い無料アップデートとMODコミュニティの盛り上がりにより、今なおインディーゲームの金字塔として支持されています。",
+        "three_line_summary": [
+          "現在も同時接続者数9万人超を記録し、インディーゲームの金字塔として愛され続けています。",
+          "個人開発による圧倒的な作り込みと手厚い無料アップデートが話題を呼び爆発的ヒットとなりました。",
+          "農業や釣り、探索や町の人々との交流を通じて自分だけの第二の人生を満喫できる傑作です。"
+        ],
+        "swamp_points": [
+          "農業・釣り・採掘・結婚などやり込み要素が豊富で何百時間でも遊べてしまう圧倒的中毒性",
+          "マイペースなスローライフから効率を極限まで追求するガチプレイまで受け止める自由度の高さ",
+          "ソロプレイだけでなく友達とのマルチプレイやMOD導入で無限に広がる遊びの幅"
+        ],
+        "caveats": [
+          "やることが非常に多いため効率を気にしすぎると作業に追われて忙しく感じてしまう場合がある",
+          "自由度が高すぎる反面、自分で目標を見つけられないと序盤に戸惑う可能性がある"
+        ],
+        "specs_note": "必要スペックは非常に低く、グラフィック機能が控えめなPCでも快適に動作します。",
+        "language_note": "公式で日本語に対応しており、画面表示やテキストも自然な日本語で楽しめます。"
+      }
+    },
+    {
+      "app_id": 553850,
+      "name": "HELLDIVERS™ 2",
+      "developers": [
+        "Arrowhead Game Studios"
+      ],
+      "publishers": [
+        "PlayStation Publishing LLC"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/ea2c7e97e263589aeac11b9316c49e01358349b4/header_japanese.jpg?t=1786525389",
+      "short_description": "銀河最後の攻防戦。スピーディーで激しく、苛烈なサードパーソンシューター。「ヘルダイバー」の一員となり、危険が溢れる銀河を舞台に自由のために仲間と共に戦え。",
+      "price_formatted": "¥ 4,480",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "やや好評",
+      "total_reviews": 1157775,
+      "total_positive": 873083,
+      "positive_percent": 75.4,
+      "ccu": 66348,
+      "ccu_prev": 64614,
+      "ccu_delta": 1734,
+      "ccu_display": "66,348 +1,734",
+      "release_date": "2024年2月8日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語 * , イタリア語 * , ドイツ語 * , スペイン語 - スペイン * , 日本語 * , 韓国語, ポルトガル語－ブラジル * , スペイン語－ラテンアメリカ * , ポーランド語, ポルトガル語－ポルトガル, ロシア語, 中国語（簡体字） * , 中国語（繁体字） * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 プロセッサー: Intel Core i7-4790K or AMD Ryzen 5 1500X メモリー: 8 GB RAM グラフィック: NVIDIA GeForce GTX 1050 Ti or AMD Radeon RX 470 ストレージ: 135 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/553850/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:01:04+09:00",
+      "updated_at_jst": "2026-08-24 23:01 JST",
+      "summarized_at": "2026-08-24T23:01:21+09:00",
+      "summary": {
+        "excerpt": "圧倒的なカオスと仲間との誤爆事故すら笑いに変える、大ヒット協力型PvEシューター！「管理民主主義」を胸に、ド派手な戦略支援と圧倒的な敵群が待つ苛烈な銀河の戦場へ飛び込め。",
+        "why_now": "発売後も高い同時接続数を維持しており、大型アップデートやアプデに伴う環境変化の度にSNSや配信で戦場模様が大きく話題になり続けているため。",
+        "buzz_story": "前作から大幅進化した迫力の3D画面と、「フレンドリーファイアありの苛烈な戦場」で起きる予測不能の爆破事故が口コミで大バズり。「管理民主主義」を掲げる独特のミームとともに一気に大ヒットへ駆け上がった。",
+        "three_line_summary": [
+          "高い同時接続数を維持し、協力型PvEシューターの代表格として今なお大きな注目を集めています。",
+          "誤爆必至のカオスな協力プレイと「管理民主主義」をネタにした世界観が配信やSNSで爆発的なバズを生みました。",
+          "群がる敵を大規模な空中爆撃で吹き飛ばしつつ、仲間と事故死すら笑い飛ばして共闘する最高にドタバタな体験が楽しめます。"
+        ],
+        "swamp_points": [
+          "ド派手な戦略支援とカオスな戦場：軌道爆撃やタレットを駆使して敵を一掃する爽快感と、味方を巻き込む誤爆事故の絶妙なパーティ感。",
+          "奥深いビルド選択と連携の快感：武器や戦略支援の組み合わせで立ち回りが激変し、野良やフレンドと難関ミッションを突破できた時の達成感が病みつきになる。"
+        ],
+        "caveats": [
+          "マルチ前提の難易度と進行度：ソロプレイや低難易度では育成素材が溜まりにくく、マルチプレイ推奨のバランスになっている。",
+          "アップデートやバランス調整への賛否：度重なる武器性能の調整や、環境によって発生するクラッシュなどの不具合に不満の声も存在する。"
+        ],
+        "specs_note": "ストレージ容量が135GBと非常に大きいため、インストール前の空き容量確保が必須です。グラフィックも一定以上のスペックが求められます。",
+        "language_note": "UI・字幕だけでなく吹替音声まで日本語にフル対応しており、臨場感あふれる日本語ボイスでプレイできます。"
+      }
+    },
+    {
+      "app_id": 105600,
+      "name": "Terraria",
+      "developers": [
+        "Re-Logic"
+      ],
+      "publishers": [
+        "Re-Logic"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1769844435",
+      "short_description": "掘って、戦って、探検して、作ろう! 出来ないことは一切無いアクション満載のアドベンチャーゲーム。 4本パックも発売中!",
+      "price_formatted": "¥ 1,200",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 1548067,
+      "total_positive": 1507491,
+      "positive_percent": 97.4,
+      "ccu": 69084,
+      "ccu_prev": 67683,
+      "ccu_delta": 1401,
+      "ccu_display": "69,084 +1,401",
+      "release_date": "2011年5月17日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）",
+      "has_japanese": false,
+      "pc_requirements": "REQUIRED OS: Windows Xp, Vista, 7, 8/8.1, 10 Processor: 2.0 Ghz Memory: 2.5GB Hard Disk Space: 200MB Video Card: 128mb Video Memory, capable of Shader Model 2.0+ DirectX®: 9.0c or Greater",
+      "steam_url": "https://store.steampowered.com/app/105600/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:54:09+09:00",
+      "updated_at_jst": "2026-08-24 22:54 JST",
+      "summarized_at": "2026-08-24T22:54:28+09:00",
+      "summary": {
+        "excerpt": "掘って、戦って、強くなる！圧倒的なボリュームと高難度のボス戦が魅力の2Dサンドボックスアドベンチャー。気づけば数百時間が溶けていく究極の沼ゲーです。",
+        "why_now": "発売から10年以上が経過した現在も約7万人の同時接続数を維持しており、「終わらない最終アップデート」と手厚いコミュニティサポートによって根強い人気を誇っています。",
+        "buzz_story": "2D版マインクラフトと例えられがちですが、実際はハック＆スラッシュと本格的なボスバトルを中心としたアクションゲーム。継続的な超大型アップデートとMODカルチャーの盛り上がりにより、Steamで97%以上の圧倒的好評価を維持し続けています。",
+        "three_line_summary": [
+          "発売から長年が経つ現在も7万人近い同時接続数を記録し、伝説的アドベンチャーとして愛され続けています。",
+          "何度も「最後のアップデート」と発表されながら進化を続ける開発の愛と、膨大なMOD環境が世界中で熱狂を生みました。",
+          "掘削や建築だけでなく、無数の武器や魔法を駆使して強大なボスに挑む戦闘メインの2Dサンドボックスです。"
+        ],
+        "swamp_points": [
+          "段階的に解放される広大な世界と、ド派手な装備やアクセサリを集めて強くなる中毒性の高い成長システム",
+          "一筋縄ではいかない歯ごたえ抜群のボスバトルと、多様な職業・ビルドによる奥深い戦略性",
+          "公式MODローダー（tModLoader）による、クリア後も無限に遊べるユーザー制作コンテンツの豊富さ"
+        ],
+        "caveats": [
+          "ゲーム内のチュートリアルや説明が非常に不親切なため、序盤はWikiなどの外部情報を頼る必要があります",
+          "公式で日本語に対応していないため、快適に遊ぶには有志の日本語化を利用する手間がかかります"
+        ],
+        "specs_note": "DirectX 9.0c対応、メモリ2.5GBと非常に軽量で、古いPCやグラフィックボードのない環境でもストレスなくプレイ可能です。",
+        "language_note": "ストア表記の通り公式での日本語は非対応ですが、有志による日本語化MODや詳細な日本語Wikiが充実しているため、プレイ上の支障はありません。"
+      }
+    },
+    {
+      "app_id": 250900,
+      "name": "The Binding of Isaac: Rebirth",
+      "developers": [
+        "Nicalis, Inc.",
+        "Edmund McMillen"
+      ],
+      "publishers": [
+        "Nicalis, Inc."
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250900/header.jpg?t=1731977365",
+      "short_description": "The Binding of Isaac: Rebirth is a randomly generated action RPG shooter with heavy Rogue-like elements. Following Isaac on his journey players will find bizarre treasures that change Isaac’s form giving him super human abilities and enabling him to fight off droves of mysterious creatures, discover secrets and fight his way to safety.",
+      "price_formatted": "¥ 1,480",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 448343,
+      "total_positive": 434405,
+      "positive_percent": 96.9,
+      "ccu": 92464,
+      "ccu_prev": 91697,
+      "ccu_delta": 767,
+      "ccu_display": "92,464 +767",
+      "release_date": "2014年11月5日",
+      "coming_soon": false,
+      "supported_languages": "英語 * * フル音声対応言語",
+      "has_japanese": false,
+      "pc_requirements": "最低: OS: XP プロセッサー: Core 2 Duo メモリー: 2 GB RAM グラフィック: Discreet video card ストレージ: 449 MB の空き容量 サウンドカード: Yes",
+      "steam_url": "https://store.steampowered.com/app/250900/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:54:57+09:00",
+      "updated_at_jst": "2026-08-24 22:54 JST",
+      "summarized_at": "2026-08-24T22:55:17+09:00",
+      "summary": {
+        "excerpt": "無数のアイテムシナジーと圧倒的やり込み要素を誇るローグライクアクションの金字塔。理不尽な難易度と鬱屈した世界観の裏に、中毒性抜群の面白さが詰まった傑作です。",
+        "why_now": "リリースから長年が経過した現在も同接9万人以上を記録しており、ローグライクジャンルの代表格として絶大な人気を保ち続けています。",
+        "buzz_story": "鬼才エドモンド・マクミランが手がけた本作は、ランダムダンジョンと多様なアイテム合成が生み出す無限の展開で高い評価を獲得。大型DLCや豊富なMOD文化も相まって、数千時間を費やすコアゲーマーを次々と生み出し続けています。",
+        "three_line_summary": [
+          "現在も9万人を超える驚異的な同時接続者数を維持し、ローグライクアクションの金字塔として君臨しています。",
+          "ランダム生成ダンジョンと無数のアイテム効果が噛み合ったときの中毒性が話題となり、口コミや配信で不動の人気を築きました。",
+          "奇妙なアイテムで能力を変化させながら不気味な敵に挑むシューティングで、理不尽な難度と爽快感が交錯する体験が味わえます。"
+        ],
+        "swamp_points": [
+          "数百種類におよぶアイテムの組み合わせが生み出す、毎回劇的に変わる強烈な『壊れビルド』の爽快感",
+          "隠しキャラクターや全実績解除、高難易度モードなど数百時間遊んでも終わらない底なしのやり込み要素",
+          "何度理不尽に敗北して激怒しても『あと1回だけ…』と夜通しプレイしてしまう悪魔的な中毒性"
+        ],
+        "caveats": [
+          "排泄物や血液、トラウマ的なストーリー表現などグロテスクで奇抜な世界観のため人を選びます。",
+          "一部キャラクターの難易度が異常に高く強烈なストレスを感じるほか、アイテム効果の把握に外部情報やMODが必要になりがちです。"
+        ],
+        "specs_note": "非常に軽量な動作スペックで、古いPCでもストレスなく快適に動作します。",
+        "language_note": "公式での日本語対応はありませんが、有志によるMODなどを導入することで快適にプレイ可能です。"
+      }
+    },
+    {
+      "app_id": 394360,
+      "name": "Hearts of Iron IV",
+      "developers": [
+        "Paradox Development Studio"
+      ],
+      "publishers": [
+        "Paradox Interactive"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/394360/67bbd0057627fc2244793bcdd09260c2539499cf/header.jpg?t=1787142381",
+      "short_description": "Victory is at your fingertips! Your ability to lead your nation is your supreme weapon, the strategy game Hearts of Iron IV lets you take command of any nation in World War II; the most engaging conflict in world history.",
+      "price_formatted": "¥ 6,990",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 375131,
+      "total_positive": 337690,
+      "positive_percent": 90.0,
+      "ccu": 51050,
+      "ccu_prev": 50359,
+      "ccu_delta": 691,
+      "ccu_display": "51,050 +691",
+      "release_date": "2016年6月7日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, ドイツ語, ポーランド語, ポルトガル語－ブラジル, ロシア語, スペイン語 - スペイン, 日本語, 中国語（簡体字）, 韓国語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS: Windows® 10 Home 64 Bit プロセッサー: Intel® Core™ i5 750 | AMD® FX 4300 メモリー: 4 GB RAM グラフィック: Nvidia® GeForce™ GTX 470 (1.28GB) | AMD® HD 5850 (1GB) | Intel Iris Xe G7 (Tiger Lake) | AMD® Radeon™ RX Vega 11 DirectX: Version 9.0c ストレージ: 2 GB の空き容量 サウンドカード: Direct X- compatible soundcard. 追記事項: Mouse and keyboard are required. / Latest available WHQL drivers from both manufacturers/ Internet Con",
+      "steam_url": "https://store.steampowered.com/app/394360/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:00:13+09:00",
+      "updated_at_jst": "2026-08-24 23:00 JST",
+      "summarized_at": "2026-08-24T23:00:35+09:00",
+      "summary": {
+        "excerpt": "第二次世界大戦を背景にした超本格国家運営ストラテジー。史実から「歴史のIF」まで無限に遊べ、広大な戦術と思惑が交錯する時間泥棒の決定版です。",
+        "why_now": "発売から長年が経過した現在も同時接続者数5万人以上を誇り、膨大なMODエコシステムと圧倒的なやり込み要素により不動のゲームとして君臨し続けています。",
+        "buzz_story": "歴史好きや戦略ゲームファンの間で「時間を忘れて没頭できる名作」として口コミが広まり、数百〜数千時間プレイした熱狂的ファンによるレビューやMOD制作コミュニティが継続的な盛り上がりを生み出しています。",
+        "three_line_summary": [
+          "発売から年数が経過した現在も最高峰の第二次世界大戦ストラテジーとして5万人以上の同時接続プレイヤーを集めています。",
+          "史実の再現だけでなくプレイヤーの選択で世界史を塗り替えられる自由度と、有志による質の高いMODの広がりが継続的な人気の理由です。",
+          "軍隊の編成や補給線の維持、内政や外交まで緻密な管理が求められ、気づけば1日が溶けていく極めて中毒性の高い国家指揮シミュレーターです。"
+        ],
+        "swamp_points": [
+          "史実通りに進めるだけでなく、国家の運命を変えて「もしも」のIF歴史を無限に創り出せる自由度。",
+          "師団編成や補給線、作戦計画など、自分の戦術と思惑が完璧に噛み合った瞬間の圧倒的達成感。",
+          "バリエーション豊かな有志制作MODにより、何千時間遊んでも飽きない無限のプレイバリュー。"
+        ],
+        "caveats": [
+          "ルールや覚えるべき仕様が極めて複雑で、初心者がシステムを理解して楽しめるようになるまで高いハードルが存在します。",
+          "講和会議や国境紛争の挙動、AIの賢さ、多数のDLC購入が必要になる点などについて一部ユーザーから賛否や不満の声があります。"
+        ],
+        "specs_note": "最低動作環境はCore i5 750 / GTX 470以上と古めの環境でも動作しますが、ゲーム終盤の大規模戦闘ではCPU負荷が高くなる点に注意が必要です。",
+        "language_note": "公式で日本語に対応しており、ゲーム内のテキストやUIを日本語でプレイ可能です。"
+      }
+    },
+    {
+      "app_id": 892970,
+      "name": "Valheim",
+      "developers": [
+        "Iron Gate AB"
+      ],
+      "publishers": [
+        "Coffee Stain Publishing"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/de0bdcf6c008c508a79d8e75eb91fc67f4bebd5d/header.jpg?t=1786012504",
+      "short_description": "バイキング文化にインスパイアされ、プロシージャル生成された広大なファンタジー世界を舞台にした、1〜10人用の過酷な探検サバイバルゲーム。オーディンの右腕として相応しい存在になるため、戦い、建設し、征服して行こう！",
+      "price_formatted": "¥ 3,400",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 540620,
+      "total_positive": 508100,
+      "positive_percent": 94.0,
+      "ccu": 15030,
+      "ccu_prev": 14652,
+      "ccu_delta": 378,
+      "ccu_display": "15,030 +378",
+      "release_date": "2021年2月2日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, ドイツ語, スペイン語 - スペイン, ロシア語, 中国語（簡体字）, トルコ語, 日本語, ポルトガル語－ブラジル, ポーランド語, ウクライナ語, イタリア語, 韓国語, 中国語（繁体字）",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 or later プロセッサー: 2.6 GHz Quad Core or similar メモリー: 8 GB RAM グラフィック: GeForce GTX 950 or Radeon HD 7970 DirectX: Version 11 ストレージ: 1 GB の空き容量 追記事項: The following languages have been partially translated by the community: Svenska, Italiano, Romanian, български, македонски, Suomi, Dansk, íslenska, Lietuvių kalba, čeština, Magyar nyelv, Português europe",
+      "steam_url": "https://store.steampowered.com/app/892970/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:58:28+09:00",
+      "updated_at_jst": "2026-08-24 22:58 JST",
+      "summarized_at": "2026-08-24T22:58:43+09:00",
+      "summary": {
+        "excerpt": "北欧神話を舞台にした大人気サバイバルクラフト。仲間との開拓や拠点建築、美麗な光の演出と過酷な探検が病みつきになる、数百時間遊べる名作バイキングアクション！",
+        "why_now": "正式リリース（1.0）の足音が近づくなか、今なお1.5万人を超える同時接続プレイヤー数を維持しており、オープンワールドサバイバルクラフトの金字塔として高い人気を誇っています。",
+        "buzz_story": "早期アクセス開始直後からライティングの美しさと重厚なサバイバル要素が話題となり爆発的ヒットを記録。配信や口コミで魅力が広まり、アップデートのたびに多くのプレイヤーが復帰する大ヒット作となりました。",
+        "three_line_summary": [
+          "1.0正式リリースを間近に控え、現在も1万5千人以上のプレイヤーが遊ぶ大人気サバイバルクラフトです。",
+          "ライティングが映える美しい世界観と仲間との開拓・建築の面白さが配信やSNSで拡散され話題になりました。",
+          "バイキングとして未知のバイオームを探索し、拠点や船を造りながら強大なボスに挑む歯応え抜群のゲームです。"
+        ],
+        "swamp_points": [
+          "こだわり始めると止まらない建築と拠点拡張：素材を集めて自分だけの要塞や港町を作り上げる中毒性。",
+          "ロマン溢れる大航海とバイオーム探索：船を出して未知の陸地を探し、巨大な海蛇や強敵と戦う冒険感。",
+          "フレンドとの協力マルチプレイ：仲間と役割分担して素材集めや強大なボス戦に挑む圧倒的な達成感。"
+        ],
+        "caveats": [
+          "後半バイオーム（霧の地や灰の地など）は視界の悪さや即死要素が多く、難易度の高さからストレスを感じる場合がある。",
+          "鉱石の持ち運び制限やインベントリ管理などgrind（作業感）が強いため、必要に応じて難易度設定やMod活用が推奨される。"
+        ],
+        "specs_note": "64bit OSと8GBのメモリ、GTX 950以上のグラフィック機能が必要です。必要ストレージ容量は1GBと比較的軽量です。",
+        "language_note": "公式で日本語表示に対応しており、インターフェースや説明文を日本語で楽しむことができます。"
+      }
+    },
+    {
+      "app_id": 1426210,
+      "name": "It Takes Two",
+      "developers": [
+        "Hazelight Studios"
+      ],
+      "publishers": [
+        "Electronic Arts"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1426210/header_japanese.jpg?t=1777395376",
+      "short_description": "「It Takes Two」で人生最大のクレイジーな旅に出かけましょう。「It Takes Two」で人生最高のクレイジーな旅に出かけましょう。フレンドパス*でフレンドを無料で招待して、一緒に愉快で過激なゲームプレイに挑戦です。",
+      "price_formatted": "¥ 4,300",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 268478,
+      "total_positive": 256216,
+      "positive_percent": 95.4,
+      "ccu": 13473,
+      "ccu_prev": 13197,
+      "ccu_delta": 276,
+      "ccu_display": "13,473 +276",
+      "release_date": "2021年3月25日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語 * , イタリア語, ドイツ語 * , スペイン語 - スペイン * , 日本語 * , 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, 中国語（繁体字） * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS *: Windows 8.1 64-bit or Windows 10 64-bit プロセッサー: Intel Core i3-2100T or AMD FX 6100 メモリー: 8 GB RAM グラフィック: Nvidia GeForce GTX 660 or AMD R7 260x DirectX: Version 11 ネットワーク: ブロードバンドインターネット接続 ストレージ: 50 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1426210/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:58:08+09:00",
+      "updated_at_jst": "2026-08-24 22:58 JST",
+      "summarized_at": "2026-08-24T22:58:22+09:00",
+      "summary": {
+        "excerpt": "完全2人協力プレイ専用の傑作アクション。次々と変化するギミックと圧巻のステージ展開で、パートナーと協力しながら笑いと驚きに満ちた冒険を心ゆくまで楽しめます。",
+        "why_now": "2人協力プレイの最高峰として根強い人気を誇り、フレンドパスで1人が買えば招待して遊べる手軽さや高い同時接続数を今なお維持しているため。",
+        "buzz_story": "Game of the Yearを受賞した圧倒的な完成度と、フレンドパス対応による誘いやすさからカップルや友人同士の配信・口コミで話題が爆発。常に新しい体験を提供する怒涛のゲームデザインが絶賛され、co-opゲームの金字塔となりました。",
+        "three_line_summary": [
+          "1人が購入すれば相手を無料で招待できるフレンドパスと圧倒的評価により、2人プレイゲームの金字塔として今なお高い人気を維持しています。",
+          "Game of the Year獲得の実績や、カップル・友人同士での実況プレイ・口コミから口コミへと拡散し大ヒットを記録しました。",
+          "ステージごとに全く異なる能力やギミックが登場し、息を合わせて試練を乗り越えていく最高の体験型アクションアドベンチャーです。"
+        ],
+        "swamp_points": [
+          "ステージや場面ごとに全く異なるアクションと専用ギミックが用意され、最後まで飽きさせない驚異の展開力",
+          "互いの能力を組み合わせて解くパズルや協力ボス戦に加え、世界観を彩る数々の対戦ミニゲームや遊び心満載の寄り道",
+          "1本の購入で2人プレイ可能なフレンドパス仕様と、密なコミュニケーションが生まれる唯一無二の協力プレイ体験"
+        ],
+        "caveats": [
+          "3Dアクションやカメラ操作の基礎知識が求められるため、3Dゲームに慣れていない完全な初心者には難易度が高く感じられる場合がある",
+          "離婚寸前の夫婦を描くストーリー展開や、一部の苛烈・ショッキングな演出に関しては賛否が分かれる"
+        ],
+        "specs_note": "64ビットプロセッサおよびWindows 8.1/10、Core i3-2100T / GTX 660以上のスペックと50GBの空き容量が必要です。",
+        "language_note": "日本語のフル音声および字幕・UIに対応しており、吹き替えで物語やキャラクター同士のやり取りを存分に楽しめます。"
+      }
+    },
+    {
+      "app_id": 1942280,
+      "name": "Brotato",
+      "developers": [
+        "Blobfish"
+      ],
+      "publishers": [
+        "Blobfish"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1942280/f98281910016f8924be37cce3d4b119f5223a358/header.jpg?t=1787049651",
+      "short_description": "Brotatoは、トップダウン アリーナ シューターのローグライトです。一度に最大6つの武器を駆使してポテトを操作し、エイリアンの大群を撃退していきます。さまざまな特性とアイテムから選択して、自分だけのビルドにし、助けが来るまで生き残りましょう。",
+      "price_formatted": "¥ 580",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 118021,
+      "total_positive": 113281,
+      "positive_percent": 96.0,
+      "ccu": 11456,
+      "ccu_prev": 11211,
+      "ccu_delta": 245,
+      "ccu_display": "11,456 +245",
+      "release_date": "2023年6月23日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, ドイツ語, スペイン語 - スペイン, 日本語, 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, 中国語（繁体字）, イタリア語, トルコ語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows 7+ プロセッサー: 2 Ghz メモリー: 4 GB RAM グラフィック: 128MB, OpenGL 3+ ストレージ: 200 MB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1942280/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:54:34+09:00",
+      "updated_at_jst": "2026-08-24 22:54 JST",
+      "summarized_at": "2026-08-24T22:54:50+09:00",
+      "summary": {
+        "excerpt": "最大6つの武器を同時展開！40以上の個性的なポテトたちを使い分け、怒濤のエイリアン群を薙ぎ払う圧倒的中毒性の全方位ローグライトアリーナシューター。",
+        "why_now": "Steam上で1万人を超える高い同時接続数を保持しており、580円という超低価格ながら圧倒的な高評価と圧倒的中毒性で絶えず注目を集めています。",
+        "buzz_story": "Vampire Survivors系の流行下で登場しながらも、最大6つの武器所持やステータス特化の深み、40種以上の個性豊かなキャラクター設計で独自進化を遂げました。Steam Deckなど携帯機での遊びやすさも手伝い、コアなゲーマーからカジュアル層まで口コミで大ヒットとなりました。",
+        "three_line_summary": [
+          "ワンコイン台で遊べる圧倒的コスパと中毒性により、現在も万単位の同時接続数を誇る人気作です。",
+          "サバイバー系ゲームの波に乗りつつ、独自のアリーナビルド構築要素が評価されて口コミで広がりました。",
+          "ポテトを操作して大群を蹴散らし、ウェイブ間でステータスと武器を強化していく爽快アリーナシューターです。"
+        ],
+        "swamp_points": [
+          "40種以上のキャラごとに異なるプレイフィールと、無限のアイテムシナジー",
+          "最大6つの武器を同時展開して画面いっぱいの敵を薙ぎ払うビルド構築の爽快感",
+          "1ウェーブ数十秒とテンポ良く進むため、あと1回が止まらなくなる時間ドロボウ構造"
+        ],
+        "caveats": [
+          "最高難易度（危険度5/ナイトメア）は急激に鬼畜な弾幕回避アクションとなり、プレイスタイルを選ぶ",
+          "周回ごとのビルド要素は深いが、ゲーム全体の永続的なメタ育成要素は控えめ"
+        ],
+        "specs_note": "最低スペックはCPU 2GHz、メモリ4GB、容量200MBと非常に軽量で、低スペックPCやSteam Deckでも快適にプレイできます。",
+        "language_note": "公式で日本語に対応しており、アイテム効果やUIもスムーズに読み取れます。"
+      }
+    },
+    {
+      "app_id": 281990,
+      "name": "Stellaris",
+      "developers": [
+        "Paradox Development Studio"
+      ],
+      "publishers": [
+        "Paradox Interactive"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/281990/header.jpg?t=1782139685",
+      "short_description": "Paradox Development Studioがお贈りするこのSF大戦略ゲームで、驚異に満ちた銀河系を探索しましょう。様々な異星人種族と交流し、予期せぬ出来事が起こる奇妙な新世界を発見して、あなたの帝国の版図を拡大しましょう。冒険を新たに始めるたび、ほぼ無限大の可能性が目の前に広がります。",
+      "price_formatted": "¥ 6,990",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 196815,
+      "total_positive": 168812,
+      "positive_percent": 85.8,
+      "ccu": 12774,
+      "ccu_prev": 12544,
+      "ccu_delta": 230,
+      "ccu_display": "12,774 +230",
+      "release_date": "2016年5月10日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, ドイツ語, スペイン語 - スペイン, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, 日本語, 韓国語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS: Windows® 10 Home 64 Bit プロセッサー: Intel® iCore™ i3-530 or AMD® FX-6350 メモリー: 4 GB RAM グラフィック: Nvidia® GeForce™ GTX 460 or AMD® ATI Radeon™ HD 5870 (1GB VRAM), or AMD® Radeon™ RX Vega 11 or Intel® HD Graphics 4600 DirectX: Version 9.0c ネットワーク: ブロードバンドインターネット接続 ストレージ: 10 GB の空き容量 サウンドカード: Direct X 9.0c- compatible sound card 追記事項: Controller support: 3-button mouse, keyboard and speakers. Spec",
+      "steam_url": "https://store.steampowered.com/app/281990/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:59:31+09:00",
+      "updated_at_jst": "2026-08-24 22:59 JST",
+      "summarized_at": "2026-08-24T23:00:06+09:00",
+      "summary": {
+        "excerpt": "自分だけの銀河帝国を築き上げ、無数の星々を探索・征服するSF大戦略ゲーム。圧倒的な自由度とイベントの数々により、遊ぶたびに異なる宇宙の歴史が紡がれる時間泥棒な逸品。",
+        "why_now": "発売から長年が経過した現在も同時接続者数1.2万人超を維持する大作SF 4Xゲーム。頻繁な大型アップデートや新DLCのリリースにより、常に新鮮な環境で遊べる作品として話題を集め続けています。",
+        "buzz_story": "Paradoxが手がけた大宇宙シミュレーションとして登場し、プレイヤーごとの帝国設定やSFロマン溢れるランダムイベントの豊富さで口コミが拡大。長年にわたる大幅な仕様変更やDLC展開により、時に賛否両論を巻き起こしつつも膨大なコアファンを惹きつけ続けています。",
+        "three_line_summary": [
+          "発売から長年が経過した現在も1万人以上の同時接続を記録し、アップデートの度に話題となっています。",
+          "自分好みの政体や種族を細かく構築できる圧倒的なSFロールプレイ体験が評価され、コアなファン層を獲得しました。",
+          "宇宙探索から内政・外交・大艦隊戦まで、遊ぶたびに自分だけの銀河史が生まれて無限に時間が溶けていく大戦略ゲームです。"
+        ],
+        "swamp_points": [
+          "「種族と帝国のカスタマイズ沼」：思想や政体、種族特性を細かく設定でき、友好的な貿易国から全銀河の敵となる覇道国家まで自由自在にロールプレイ可能。",
+          "「銀河規模の内政・外交・戦争沼」：未知の星系探索や巨大構造物の建設、大艦隊同士が激突する宇宙戦など、止めるタイミングを見失う中毒性を誇る。"
+        ],
+        "caveats": [
+          "長年のアプデでシステムが激変するため過去の攻略が通用しなくなりやすく、大型パッチ直後はバグやゲーム終盤の処理遅延が発生することがあります。",
+          "拡張パック（DLC）が非常に多く全て揃えると高額になるため、セール時の購入やサブスクリプションの利用を検討するのがおすすめです。"
+        ],
+        "specs_note": "最低動作環境は低めですが、銀河サイズを大きくしたりゲーム終盤に差し掛かると処理負荷が大幅に増えるため、快適に遊ぶには余裕を持ったCPU性能が推奨されます。",
+        "language_note": "公式で日本語に対応しており、膨大なイベントテキストや複雑な内政画面も安心して日本語でプレイ可能です。"
+      }
+    },
+    {
+      "app_id": 960090,
+      "name": "Bloons TD 6",
+      "developers": [
+        "Ninja Kiwi"
+      ],
+      "publishers": [
+        "Ninja Kiwi"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg?t=1782123772",
+      "short_description": "大ヒットのタワーディフェンスゲーム",
+      "price_formatted": "¥ 1,600",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 393926,
+      "total_positive": 382845,
+      "positive_percent": 97.2,
+      "ccu": 8268,
+      "ccu_prev": 8070,
+      "ccu_delta": 198,
+      "ccu_display": "8,268 +198",
+      "release_date": "2018年12月18日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, デンマーク語, フィンランド語, 日本語, 韓国語, ノルウェー語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, スペイン語－ラテンアメリカ, スウェーデン語, 中国語（繁体字）, トルコ語, ポーランド語, スペイン語 - スペイン, アラビア語, オランダ語, タイ語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 (64bit) プロセッサー: 1.5Ghz or better (x86-64) メモリー: 4096 MB RAM グラフィック: OpenGL 2.0 compatible, ATI, Nvidia or Intel HD ストレージ: 2048 MB の空き容量 サウンドカード: Windows compatible sound card",
+      "steam_url": "https://store.steampowered.com/app/960090/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:57:24+09:00",
+      "updated_at_jst": "2026-08-24 22:57 JST",
+      "summarized_at": "2026-08-24T22:57:36+09:00",
+      "summary": {
+        "excerpt": "風船を割りまくる大人気タワーディフェンス！シンプルなルールでありながら、アップグレードや組み合わせの奥深さに時間を忘れてハマる神ゲーです。",
+        "why_now": "発売から時間が経っても安定して高い同時接続数を誇り、圧倒的に好評な評価を維持し続けているため。",
+        "buzz_story": "ブラウザゲーム時代から続く人気シリーズの最新作として登場し、丁寧なアプデと圧倒的なボリュームで世界中のTDファンを魅了。何百時間遊んでも飽きないゲーム性の高さとクロスプラットフォーム対応により、長年にわたり根強い人気を獲得しています。",
+        "three_line_summary": [
+          "今も8,000人以上の同時接続数を集める圧倒的人気のタワーディフェンスです。",
+          "前作からのファンに加え、継続的なアプデと深いやり込み要素で口コミが広まり大ヒットしました。",
+          "ルールは風船を割るだけで単純ですが、進化パスやヒーローの組み合わせが非常に奥深い作品です。"
+        ],
+        "swamp_points": [
+          "3つの強化ルートや圧倒的なビルドの奥深さ",
+          "気づけば数時間が吹き飛ぶ中毒性と膨大なやり込みコンテンツ"
+        ],
+        "caveats": [
+          "終盤の大混戦時には画面が見づらくなったり処理が重くなることがある",
+          "一部ボスイベントの開催時期が限定されている点"
+        ],
+        "specs_note": "低スペックPCやノートPCでも軽快に動作する軽量設計となっています。",
+        "language_note": "公式で日本語に対応しており、ゲーム内のテキストも日本語で楽しめます。"
+      }
+    },
+    {
+      "app_id": 646570,
+      "name": "Slay the Spire",
+      "developers": [
+        "Mega Crit"
+      ],
+      "publishers": [
+        "Mega Crit"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/header.jpg?t=1774015376",
+      "short_description": "We fused card games and roguelikes together to make the best single player deckbuilder we could. Craft a unique deck, encounter bizarre creatures, discover relics of immense power, and Slay the Spire!",
+      "price_formatted": "¥ 2,800",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 217775,
+      "total_positive": 212269,
+      "positive_percent": 97.5,
+      "ccu": 9498,
+      "ccu_prev": 9304,
+      "ccu_delta": 194,
+      "ccu_display": "9,498 +194",
+      "release_date": "2019年1月24日",
+      "coming_soon": false,
+      "supported_languages": "英語, 中国語（簡体字）, フランス語, ドイツ語, 韓国語, ロシア語, 日本語, ポーランド語, ウクライナ語, スペイン語 - スペイン, イタリア語, オランダ語, 中国語（繁体字）, トルコ語, タイ語, ポルトガル語－ブラジル, ベトナム語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows XP, Vista, 7, 8/8.1, 10 プロセッサー: 2.0 Ghz メモリー: 2 GB RAM グラフィック: 1Gb Video Memory, capable of OpenGL 3.0+ support (2.1 with ARB extensions acceptable) ストレージ: 1 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/646570/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:52:59+09:00",
+      "updated_at_jst": "2026-08-24 22:52 JST",
+      "summarized_at": "2026-08-24T22:53:20+09:00",
+      "summary": {
+        "excerpt": "デッキ構築とローグライクを融合させた金字塔。一見弱そうなカードが生み出す強力なシナジーと絶妙な難易度調整により、「あと一回」が止まらなくなる圧倒的中毒性を誇る名作です。",
+        "why_now": "発売から年月が経った今も常時1万人前後の同時接続数を維持しており、デッキ構築ローグライクの金字塔・最高峰として「圧倒的に好評」の評価を受け続けています。",
+        "buzz_story": "早期アクセス期からストリーマーの配信やプレイヤーの口コミで「恐ろしいほど時間が溶ける」と話題を呼び、ローグライクカードゲームという一大ジャンルを確立・定着させました。",
+        "three_line_summary": [
+          "今なお1万人規模のプレイヤーに遊ばれ続ける、デッキ構築ローグライクの原点にして圧倒的最高峰です。",
+          "ストリーマーやカードゲーマーの口コミから中毒性の高さが爆発的に広まり、ジャンルを代表する大ヒット作となりました。",
+          "敵の行動を見極めつつ、カードの組み合わせやレリックの相性を探って塔の頂上を目指す奥深い戦略体験が味わえます。"
+        ],
+        "swamp_points": [
+          "一枚ではパッとしないカードたちが奇跡的なコンボを叩き出すシナジー発見の快感",
+          "敵の次の行動が明示されるUI設計により、純粋なカード選択と戦術立案だけに没頭できる中毒性",
+          "高難易度「アセンション」や多彩なビルドの探求により、数百時間遊んでも飽きない圧巻のリプレイ性"
+        ],
+        "caveats": [
+          "ドローや道中のカード提示には強いランダム性があり、運に見放されると厳しい展開が続くことがある",
+          "高難易度では常にギチギチの選択を迫られるため、息苦しさや疲労感を感じる人もいる"
+        ],
+        "specs_note": "非常に軽量で、古いPCや標準的なノートPCでも快適に動作します。",
+        "language_note": "日本語にフル対応しており、カードの効果やUIの翻訳もわかりやすく安心してプレイできます。"
+      }
+    },
+    {
+      "app_id": 367520,
+      "name": "Hollow Knight",
+      "developers": [
+        "Team Cherry"
+      ],
+      "publishers": [
+        "Team Cherry"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684",
+      "short_description": "英雄とムシたちによって築かれた広大な王国の廃墟を冒険し、自らの道を切り開きましょう！ 伝統的な手描きスタイルによって生み出された2D世界の中で、曲がりくねった洞穴や、汚染された生物、それに友好的でちょっと変わったムシたちがあなたを待っています。",
+      "price_formatted": "¥ 1,700",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 558330,
+      "total_positive": 541101,
+      "positive_percent": 96.9,
+      "ccu": 9306,
+      "ccu_prev": 9134,
+      "ccu_delta": 172,
+      "ccu_display": "9,306 +172",
+      "release_date": "2017年2月25日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語 * , ドイツ語 * , スペイン語 - スペイン * , 韓国語 * , 中国語（簡体字） * , イタリア語 * , ポルトガル語－ブラジル * , ロシア語 * , 日本語 * , 中国語（繁体字） * * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 version 21H1 (build 19043) or newer プロセッサー: Intel Core i3-3240, AMD FX-4300 メモリー: 4 GB RAM グラフィック: GeForce GTX 560 Ti (1GB), Radeon HD 7750 (1GB) DirectX: Version 10 ストレージ: 9 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/367520/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:55:23+09:00",
+      "updated_at_jst": "2026-08-24 22:55 JST",
+      "summarized_at": "2026-08-24T22:55:43+09:00",
+      "summary": {
+        "excerpt": "滅びゆく虫たちの王国を巡る2Dメトロイドヴァニアの最高峰。手描きのアートと美しいBGM、絶妙な難易度のボス戦と探索要素がプレイヤーを深く魅了します。",
+        "why_now": "現在も9,000人規模の同時接続者数を維持しており、続編『Silksong』を待ち望むファンや2Dアクションの金字塔を遊ぶ新規プレイヤーで賑わい続けています。",
+        "buzz_story": "少数精鋭のTeam Cherryが手掛けた圧倒的な手描きビジュアルと美しいBGM、手応えのあるアクションが口コミで爆発的に拡散し、インディーゲーム史に残る傑作となりました。",
+        "three_line_summary": [
+          "続編への注目度が高まり続ける中、圧倒的な高評価と高い同時接続者数を保ち続けています。",
+          "少人数開発とは思えない美麗なアートと緻密な世界観が口コミで世界的な話題となりました。",
+          "手応え抜群のアクションと広大な虫の王国を探索する最高峰のメトロイドヴァニアです。"
+        ],
+        "swamp_points": [
+          "何度も挑戦してボスの攻撃を見極め、ギリギリで撃破できた時の圧倒的な達成感",
+          "美しいBGMと手描きイラストで描かれた、謎と秘密に満ちた広大な地下王国の探索中毒性",
+          "チャームの付け替えによるビルド構築と、100時間以上遊べる膨大なやり込み要素"
+        ],
+        "caveats": [
+          "マップが非常に広く目的地が表示されにくいため、探索で迷子になりやすい点",
+          "高難易度なアクション要素が多く、死にゲーや厳しい操作感が苦手な人には苦戦する点"
+        ],
+        "specs_note": "最低動作環境はCore i3・GTX 560 Ti以上と非常に軽く、標準的なPCやノートPCでもスムーズに動作します。",
+        "language_note": "日本語テキストに完全対応しており、奥深いストーリーやアイテムの説明文も自然な日本語で楽しめます。"
+      }
+    },
+    {
+      "app_id": 1966720,
+      "name": "Lethal Company",
+      "developers": [
+        "Zeekerss"
+      ],
+      "publishers": [
+        "Zeekerss"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg?t=1775380053",
+      "short_description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company.",
+      "price_formatted": "¥ 1,200",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 510478,
+      "total_positive": 494997,
+      "positive_percent": 97.0,
+      "ccu": 2971,
+      "ccu_prev": 2834,
+      "ccu_delta": 137,
+      "ccu_display": "2,971 +137",
+      "release_date": "2023年10月24日",
+      "coming_soon": false,
+      "supported_languages": "英語 * * フル音声対応言語",
+      "has_japanese": false,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 プロセッサー: Intel Core i5-7400 CPU @ 3.00GHz ; Shader Model 5 グラフィック: NVIDIA GForce GTX 1050 DirectX: Version 11 ネットワーク: ブロードバンドインターネット接続 ストレージ: 4 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1966720/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:56:34+09:00",
+      "updated_at_jst": "2026-08-24 22:56 JST",
+      "summarized_at": "2026-08-24T22:56:54+09:00",
+      "summary": {
+        "excerpt": "廃星でスクラップを回収し「会社」に売る協力型ホラーの金字塔。距離減衰VCで仲間が叫び声と共に消える恐怖と爆笑の体験。MODも豊富で今なお根強い人気を誇る一作！",
+        "why_now": "CO-OPホラー・リーサルライクの原点として根強い人気を維持しており、継続的なアップデートや豊富なMOD文化により、かつて離れたプレイヤーの復帰やフレンド同士でのマルチプレイの定番として再び注目を集めています。",
+        "buzz_story": "リリース直後から近接ボイスチャットを用いた突発的な事故や悲鳴、シュールな死に様が配信者やSNSで大バズ。ノルマ達成のために廃星でガラクタを拾う理不尽でブラックな世界観と、仲間とのわいわいプレイのギャップで爆発的なヒットとなりました。",
+        "three_line_summary": [
+          "協力型ホラーの金字塔として、アプデやMODによる拡張性で今なおマルチプレイの定番として愛され続けています。",
+          "距離によって声が途切れるゲーム内VCが生む悲喜劇や突発的なハプニングが配信やSNSで話題となり爆発的ヒットを記録しました。",
+          "怪物だらけの廃星でノイズ混じりのVCを頼りに仲間とスクラップを集め、叫びと爆笑が交錯するスリリングなサバイバルホラーです。"
+        ],
+        "swamp_points": [
+          "距離感や壁を隔てると声が届かなくなる位置情報ボイスチャットが生み出す、圧倒的な臨場感と爆笑必至のハプニング",
+          "豊富な有志MODが存在し、参戦人数拡張や新アイテム・モンスター追加など遊ぶたびに無限に楽しみが広がる点"
+        ],
+        "caveats": [
+          "公式では日本語非対応のため、英語表記のまま遊ぶか有志の日本語化MOD等の導入が必要になる点",
+          "ソロや野良プレイだと難易度が高く、ゲーム本来の面白さを全開で楽しむには一緒に遊ぶフレンドの存在が推奨される点"
+        ],
+        "specs_note": "最低動作環境はCore i5-7400、GTX 1050と比較的軽量ですが、大人数化MODなどを導入して遊ぶ場合はPCスペックや通信環境に余裕を持つことをおすすめします。",
+        "language_note": "公式での日本語対応はなく英語のみですが、ゲームシステム自体はシンプルで直感的にプレイしやすく、有志による日本語化MODなども利用可能です。"
+      }
+    },
+    {
+      "app_id": 264710,
+      "name": "サブノーティカ",
+      "developers": [
+        "Unknown Worlds Entertainment"
+      ],
+      "publishers": [
+        "Unknown Worlds Entertainment"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg?t=1777456112",
+      "short_description": "不思議と危険に満ちた未知の海洋世界へと潜りましょう。緑豊かな珊瑚礁や火山、洞窟などを探検するために機器をクラフトしたり、潜水艦を操縦したり、野生動物を出し抜いたりしましょう。全ては生き残るために必要なことです。",
+      "price_formatted": "¥ 4,300",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 378803,
+      "total_positive": 367788,
+      "positive_percent": 97.1,
+      "ccu": 2620,
+      "ccu_prev": 2502,
+      "ccu_delta": 118,
+      "ccu_display": "2,620 +118",
+      "release_date": "2018年1月24日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, ドイツ語, ポーランド語, ロシア語, 中国語（簡体字）, トルコ語, フィンランド語, イタリア語, チェコ語, ハンガリー語, スペイン語 - スペイン, デンマーク語, 日本語, 韓国語, ポルトガル語－ブラジル, ブルガリア語, ウクライナ語, オランダ語, スウェーデン語, ベトナム語, スペイン語－ラテンアメリカ, 中国語（繁体字）, ポルトガル語－ポルトガル, ラトビア語, リトアニア語, スロバキア語 * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS *: Windows Vista SP2 or newer, 64-bit プロセッサー: Intel Haswell 2 cores / 4 threads @ 2.5Ghz or equivalent メモリー: 4 GB RAM グラフィック: Intel HD 4600 or equivalent - This includes most GPUs scoring greater than 950 points in the 3DMark Fire Strike benchmark DirectX: Version 11 ストレージ: 20 GB の空き容量 VRサポート: SteamVR. Keyboard or gamepad required",
+      "steam_url": "https://store.steampowered.com/app/264710/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:56:11+09:00",
+      "updated_at_jst": "2026-08-24 22:56 JST",
+      "summarized_at": "2026-08-24T22:56:27+09:00",
+      "summary": {
+        "excerpt": "美しい珊瑚礁から暗黒の深海まで広がる海洋惑星を探検する名作サバイバル。海の美しさと深海の恐怖が交錯する中で、機器をクラフトし惑星の謎に挑む唯一無二の体験。",
+        "why_now": "発売から長年が経過した現在も97%以上の「圧倒的に好評」を維持しており、常に根強いプレイヤー数と高い評価を獲得し続けているため。",
+        "buzz_story": "単なるクラフト系サバイバルの枠に留まらず、広大な手作りマップと重厚な謎解きストーリーが高く評価されました。海洋恐怖症すら刺激する未知の深海探索とグラフィックの美麗さがSNSや実況で大きな話題を呼び、名作としての地位を確立しました。",
+        "three_line_summary": [
+          "「圧倒的に好評」を獲得し続ける定番オープンワールドサバイバルとして、現在も多くのプレイヤーに愛されています。",
+          "口コミや実況を通じて、美しい海の世界観と深海の恐怖、そして未知の惑星の謎を解き明かす探索の面白さが広く拡散しました。",
+          "ハイテクツールや潜水艦を制作しながら、海の美しさと底知れぬ恐怖が入り混じる水没惑星を生き抜く没入型アドベンチャーです。"
+        ],
+        "swamp_points": [
+          "美しい珊瑚礁から暗く不気味な深海へと足を踏み入れる強烈な没入感と緊張感",
+          "潜水艇の建造や基地の拡大によって未踏の領域へ進めるようになる圧倒的な達成感",
+          "自力で探索を進めることで少しずつ解き明かされる謎めいた海洋惑星のストーリー"
+        ],
+        "caveats": [
+          "素材アイテムがスタックしないため、所持品や保管庫の管理がやや煩雑になりがち",
+          "沈没船内部などの狭い水面空間や回転する探索では画面酔いしやすい"
+        ],
+        "specs_note": "低スペック環境でも動作するよう最適化されていますが、美しいグラフィックと快適な描画距離で楽しむにはミドルスペック以上のPCが推奨されます。",
+        "language_note": "公式で日本語字幕・UIに対応しており、設定やストーリーログも問題なく日本語で楽しめます。"
+      }
+    },
+    {
+      "app_id": 242760,
+      "name": "The Forest",
+      "developers": [
+        "Endnight Games Ltd"
+      ],
+      "publishers": [
+        "Endnight Games Ltd"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/header.jpg?t=1699381053",
+      "short_description": "As the lone survivor of a passenger jet crash, you find yourself in a mysterious forest battling to stay alive against a society of cannibalistic mutants. Build, explore, survive in this terrifying first person survival horror simulator.",
+      "price_formatted": "¥ 2,050",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 680542,
+      "total_positive": 650127,
+      "positive_percent": 95.5,
+      "ccu": 3981,
+      "ccu_prev": 3880,
+      "ccu_delta": 101,
+      "ccu_display": "3,981 +101",
+      "release_date": "2018年5月1日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, ドイツ語, チェコ語, フィンランド語, 日本語, 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, スウェーデン語, 中国語（繁体字）, トルコ語, イタリア語, スペイン語 - スペイン * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows 7 プロセッサー: Intel Dual-Core 2.4 GHz メモリー: 4 GB RAM グラフィック: NVIDIA GeForce 8800GT DirectX: Version 9.0 ストレージ: 5 GB の空き容量 サウンドカード: DirectX®-compatible VRサポート: SteamVR or Oculus PC 追記事項: 32bit windows users need to ensure they have at least 4gb of ram usable on their system.",
+      "steam_url": "https://store.steampowered.com/app/242760/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:00:41+09:00",
+      "updated_at_jst": "2026-08-24 23:00 JST",
+      "summarized_at": "2026-08-24T23:00:58+09:00",
+      "summary": {
+        "excerpt": "食人族が蠢く孤島で生き残れ！クラフトと拠点構築、漆黒の洞窟探索が恐怖と興奮を呼ぶ、マルチプレイ対応の金字塔サバイバルホラー。",
+        "why_now": "続編の展開や高評価なゲーム性、フレンドとのCO-OP人気により、リリースから時間が経った現在でも数千人規模の同時接続数を維持し根強い支持を集めています。",
+        "buzz_story": "飛行機事故の生存者として不気味な島に漂着したプレイヤーが、行方不明の息子を探しながら食人族の脅威に立ち向かうゲーム性が話題を呼びました。マルチプレイで誤って拠点を壊してしまうようなカオスなハプニングや、洞窟探索の圧倒的恐怖が口コミや配信で爆発的に広まりました。",
+        "three_line_summary": [
+          "続編の話題性やCO-OPサバイバルの定番としての認知により、今なお多くのプレイヤーに愛されています。",
+          "食人族の住む孤島でのサバイバルと、フレンドと遊んだ際のカオスなハプニングの面白さが口コミで拡散しました。",
+          "昼は素材を集めて拠点を作り、夜や洞窟では暗闇と恐怖に耐えながら探検する本格サバイバルホラーです。"
+        ],
+        "swamp_points": [
+          "自由度の高い拠点構築とクラフト要素で、木を切り倒して砦を作るだけでも時間を忘れて没頭できる。",
+          "広大な孤島と不気味な地下洞窟を探索し、島の真相や息子の行方を解明していくミステリー要素。",
+          "ソロでは恐怖倍増、フレンドと遊べば爆笑と混乱が巻き起こる中毒性の高いマルチプレイ体験。"
+        ],
+        "caveats": [
+          "時間の経過とともに敵の襲撃が激しくなるため、まったりスローライフを楽しみたい人にはストレスになる場合がある点。",
+          "ゲーム内の目的提示が少なく洞窟内も極めて暗いため、攻略情報なしでは迷いやすい点。"
+        ],
+        "specs_note": "最低動作スペックはDirectX 9.0対応GPUとストレージ容量5GBと軽量ですが、32bit OS環境の場合は利用可能なメモリ要件に注意が必要です。",
+        "language_note": "公式で日本語表示に対応しています。"
+      }
+    },
+    {
+      "app_id": 2379780,
+      "name": "Balatro",
+      "developers": [
+        "LocalThunk"
+      ],
+      "publishers": [
+        "Playstack"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1787247969",
+      "short_description": "ポーカーとローグライクが融合されたBalatroは、満足度いっぱいのデッキビルダーゲームです。違法ポーカー・ハンドを出して、ゲームチェンジャーのジョーカーを発見して、アドレナリン全開の強烈コンボを繰り出しましょう！",
+      "price_formatted": "¥ 1,700",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 197373,
+      "total_positive": 193112,
+      "positive_percent": 97.8,
+      "ccu": 7737,
+      "ccu_prev": 7637,
+      "ccu_delta": 100,
+      "ccu_display": "7,737 +100",
+      "release_date": "2024年2月20日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, オランダ語, 日本語, ポーランド語, ポルトガル語－ブラジル, 中国語（簡体字）, スペイン語－ラテンアメリカ, 中国語（繁体字）",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS *: Windows 7, 8, 10, 11 x64 プロセッサー: Intel Core i3 メモリー: 1 GB RAM グラフィック: OpenGL 2.1 compatible graphics card, integrated graphics ストレージ: 150 MB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/2379780/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:52:14+09:00",
+      "updated_at_jst": "2026-08-24 22:52 JST",
+      "summarized_at": "2026-08-24T22:52:28+09:00",
+      "summary": {
+        "excerpt": "ポーカーとローグライクが奇跡の融合を果たした中毒性抜群のデッキビルドゲーム。ジョーカーの効果を組み合わせた数値のインフレと心地よい効果音が脳汁を分泌させます。",
+        "why_now": "圧倒的な高評価（好評率97.8%）を獲得し続け、発売から時間が経った現在も高い同時接続者数を維持する怪物級インディーゲームとして世界的ブームとなっているため。",
+        "buzz_story": "ポーカーをベースにしつつもルール知識不要で遊べる革新的なゲーム性により、海外配信者やSNSで「時間を溶かす危険なゲーム」として急速に話題化。中毒性の高さと極上のプレイフィールが口コミで広がり、全世界で空前の大ヒットとなりました。",
+        "three_line_summary": [
+          "圧倒的好評率97.8%を誇り、世界中で絶え間なくプレイヤーを魅了し続けている超話題作です。",
+          "ポーカーの知識がなくても楽しめる絶妙なゲームデザインと強烈な中毒性が口コミや配信を通じて一気に広まりました。",
+          "ジョーカーを組み合わせてスコアを爆発的にインフレさせる爽快感と心地よい効果音が病みつきになるデッキビルドローグライクです。"
+        ],
+        "swamp_points": [
+          "ジョーカーのシナジーによってスコアが桁違いに爆発インフレしていく圧倒的快感",
+          "カード選択や効果発動時のサウンド・演出がとにかく心地よく、脳汁が止まらない中毒性",
+          "1プレイの手軽さと、数百時間遊んでも底が見えない戦略性の高さを両立した時間泥棒なゲーム性"
+        ],
+        "caveats": [
+          "運要素や序盤の判断ミスが原因で途中で詰むことがあり、難易度の波を感じる場合がある点",
+          "あまりにも中毒性が高すぎるため、プレイ時の時間管理には注意が必要な点"
+        ],
+        "specs_note": "必要スペックはCore i3、メモリ1GB、容量150MBと非常に軽量で、ノートPCやSteam Deckでも快適に動作します。",
+        "language_note": "公式で日本語に対応しており、UIやカードの効果テキストも日本語で安心してプレイできます。"
+      }
+    },
+    {
+      "app_id": 1794680,
+      "name": "Vampire Survivors",
+      "developers": [
+        "poncle"
+      ],
+      "publishers": [
+        "poncle"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/2ca07b690dde645771125ed9d9206c4c5fde4dd4/header.jpg?t=1781096909",
+      "short_description": "何千もの恐ろしい夜の化け物を退治して、夜明けまで生き延びよう！ 『Vampire Survivors』は、ローグライト要素を持つゴシックホラーカジュアルゲーム。プレイヤーの選択次第で、迫りくる数百のモンスターを素早く撃破できます。",
+      "price_formatted": "¥ 499",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 264834,
+      "total_positive": 260381,
+      "positive_percent": 98.3,
+      "ccu": 3214,
+      "ccu_prev": 3138,
+      "ccu_delta": 76,
+      "ccu_display": "3,214 +76",
+      "release_date": "2022年10月21日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, 日本語, 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, トルコ語, ウクライナ語, 中国語（繁体字）",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 64bit プロセッサー: x64 architecture with SSE2 instruction set support メモリー: 1 GB RAM グラフィック: DX11, DX12 capable ストレージ: 2500 MB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1794680/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:52:35+09:00",
+      "updated_at_jst": "2026-08-24 22:52 JST",
+      "summarized_at": "2026-08-24T22:52:53+09:00",
+      "summary": {
+        "excerpt": "ワンコインで無限に溶ける時間！移動操作のみのシンプルさで押し寄せる敵群をなぎ払う、ローグライト・サバイバー系の元祖にして頂点。脳汁ドバドバの快感が止まらない神ゲー。",
+        "why_now": "発売から時間が経った現在も「圧倒的に好評」を維持しており、破格の499円という価格や魅力的なDLC展開により、サバイバー系ジャンルの金字塔として新規・復帰プレイヤーが絶えず参入しています。",
+        "buzz_story": "シンプルすぎる見た目と低価格で登場した本作ですが、移動操作のみの手軽さと宝箱の豪華な演出、武器進化による圧倒的無双感が口コミで大爆発。配信者やSNSを通じて中毒性の高さが拡散され、世界的なブームを巻き起こしました。",
+        "three_line_summary": [
+          "破格の低価格と圧倒的な中毒性、魅力的なDLC展開により「ヴァンサバ系の元祖」として今なお絶大な人気を誇っています。",
+          "移動のみの超シンプル操作とドーパミン溢れる強化要素が口コミや配信で爆発的に話題となり一大ジャンルを築きました。",
+          "画面を埋め尽くす大量の敵を武器の組み合わせと進化でなぎ倒す、1プレイ30分で時間が溶ける快感ローグライトです。"
+        ],
+        "swamp_points": [
+          "移動するだけで攻撃は自動というシンプル操作と、武器進化で画面上の敵を一網打尽にする圧倒的爽快感。",
+          "宝箱を開けた際の大当たり演出やビルドの試行錯誤が脳内物質を刺激し、「もう1回だけ」の連鎖が止まらない。",
+          "499円というワンコイン価格からは考えられないほどの大量のキャラ、隠し要素、圧倒的なやり込みボリューム。"
+        ],
+        "caveats": [
+          "基本の1プレイが30分とやや長めで、ビルドが完成した後半は放置や作業感を感じる場合がある。",
+          "画面全体が派手なエフェクトと敵で埋め尽くされるため、光の点滅や視認性の悪さに酔うことがある。"
+        ],
+        "specs_note": "超軽量な2Dドット絵アクションのため、古いスペックのPCや標準的なノートPCでも問題なく快適に動作します。",
+        "language_note": "日本語字幕に公式対応しています。一部「獲得 ボロス」のような珍訳・直訳もありますが、ゲームプレイや仕様の理解には全く問題ありません。"
+      }
+    },
+    {
+      "app_id": 1145360,
+      "name": "Hades",
+      "developers": [
+        "Supergiant Games"
+      ],
+      "publishers": [
+        "Supergiant Games"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023",
+      "short_description": "死者の国の神に背き、戦いを切り抜けて冥界から脱せよ。『Bastion』、『Transistor』、『Pyre』のクリエイターによるローグライク・ダンジョンアドベンチャー。",
+      "price_formatted": "¥ 2,800",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 307858,
+      "total_positive": 301730,
+      "positive_percent": 98.0,
+      "ccu": 3747,
+      "ccu_prev": 3677,
+      "ccu_delta": 70,
+      "ccu_display": "3,747 +70",
+      "release_date": "2020年9月17日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, 韓国語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, ポーランド語, 日本語 * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows 7 SP1 プロセッサー: Dual Core 2.4 GHz メモリー: 4 GB RAM グラフィック: 1GB VRAM / DirectX 10+ support ストレージ: 15 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1145360/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:53:49+09:00",
+      "updated_at_jst": "2026-08-24 22:53 JST",
+      "summarized_at": "2026-08-24T22:54:03+09:00",
+      "summary": {
+        "excerpt": "神ローカライズと圧倒的な会話量、死ぬことすら楽しみに変わる中毒性抜群の冥界脱出ローグライト！多彩なビルドと洗練されたアクションで、圧倒的高評価を獲得する傑作。",
+        "why_now": "続編の話題や高い同時接続数を保ち続け、圧倒的高評価（98%好評）を誇るローグライトの金字塔として今なお新規プレイヤーを魅了し続けています。",
+        "buzz_story": "ギリシャ神話を題材にした美しい世界観と洗練されたハック＆スラッシュに、死んでもストーリーが進む革新的な設計が評価され、世界中のメディアや口コミで爆発的な支持を集めました。",
+        "three_line_summary": [
+          "続編の展開や根強い人気により、今なお絶対に遊ぶべきローグライトの金字塔として高い注目を集めています。",
+          "ギリシャ神話を題材にした圧倒的なテキスト量と死がペナルティにならない革新的なシステムが口コミで拡散し大ヒットしました。",
+          "1周30分程度でサクッと遊べ、神々の恩恵を組み合わせる奥深いビルド構築と爽快なハイスピードアクションを堪能できます。"
+        ],
+        "swamp_points": [
+          "「死＝ストーリー進行」の構造：周回ごとに変化する膨大な会話イベントと、完璧な日本語訳による魅力的なキャラ同士のやり取りでやめ時を見失う。",
+          "多彩なビルド構築と1周の手軽さ：武器や神々の恩恵の組み合わせが無限大で、1周約30分という手軽さも相まって「もう一回」が止まらなくなる。"
+        ],
+        "caveats": [
+          "派手な弾幕やエフェクトで画面の視認性が悪くなり、意図せぬダメージや理不尽さを感じる場面がある。",
+          "周回を重ねるうちにマップや強化パターンの単調さに気づき、飽きが来てしまうプレイヤーもいる。"
+        ],
+        "specs_note": "Windows 7 SP1以降、メモリ4GB以上、VRAM 1GB以上のグラフィック環境で動作するため、低スペックPCでも快適にプレイ可能です。",
+        "language_note": "テキストとUIが完全日本語対応しており、翻訳のクオリティが非常に高いため膨大なストーリーやキャラクター同士の会話をフルに楽しめます。"
+      }
+    },
+    {
+      "app_id": 1332010,
+      "name": "Stray",
+      "developers": [
+        "BlueTwelve Studio"
+      ],
+      "publishers": [
+        "Annapurna Interactive"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1332010/71daca1910d664d31240b9623a495e0c0828807f/header.jpg?t=1785424330",
+      "short_description": "家族からはぐれ、見知らぬ世界に迷い込んだ一匹の野良猫。この長い間忘れ去られたサイバーシティから脱出し、故郷へ帰るため、野良猫に求められていること…それは古代から解き明かされていない謎を解明することだ。",
+      "price_formatted": "¥ 1,750",
+      "discount_percent": 50,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 177045,
+      "total_positive": 172106,
+      "positive_percent": 97.2,
+      "ccu": 835,
+      "ccu_prev": 794,
+      "ccu_delta": 41,
+      "ccu_display": "835 +41",
+      "release_date": "2022年7月20日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, 日本語, 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, スペイン語－ラテンアメリカ, 中国語（繁体字）, トルコ語, オランダ語, ポルトガル語－ポルトガル",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 プロセッサー: Intel Core i5-2300 | AMD FX-6350 メモリー: 8 GB RAM グラフィック: NVIDIA GeForce GTX 650 Ti, 2 GB | AMD Radeon R7 360, 2 GB DirectX: Version 12 ストレージ: 10 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1332010/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:57:44+09:00",
+      "updated_at_jst": "2026-08-24 22:57 JST",
+      "summarized_at": "2026-08-24T22:58:01+09:00",
+      "summary": {
+        "excerpt": "一匹のリアルな野良猫となり、ネオン輝くサイバーシティを探索！圧倒的高評価を誇る大ヒット猫アクションアドベンチャーが、半額セール実施中で再び脚光を浴びています。",
+        "why_now": "現在50%オフ（1,750円）のセールが実施されており、同接プレイヤー数も増加中。好評率97%を越える圧倒的人気作がお手頃価格で手に入る機会として再注目されています。",
+        "buzz_story": "リリース前から「リアルな猫の動作と美しい世界観」で大きな反響を呼び、発売後は猫あるあるな仕草の作り込みと切ないストーリーで話題が沸騰。数々の賞を受賞し、猫好きだけでなく幅広いゲーマーを魅了しました。",
+        "three_line_summary": [
+          "現在50%オフのセールが開催されており、圧倒的好評を誇る名作アドベンチャーが再び活況を呈しています。",
+          "擬人化されていないリアルな猫を操作できる圧倒的な没入感と、こだわり抜かれたアニメーションがSNSで大爆発しました。",
+          "衰退したサイバーパンク風の地下都市を猫視点で駆け巡り、美しいグラフィックと謎解きを楽しめる作品です。"
+        ],
+        "swamp_points": [
+          "物を叩き落としたり爪を研いだりできる、細部までこだわり抜かれた猫特有のアクションと可愛らしい挙動",
+          "ネオンと退廃が同居するサイバーパンク都市の圧倒的なビジュアルと、世界観に没入できる美しいサウンド",
+          "直感的な操作で高所をスムーズに飛び回れる快適性と、ロボットたちとの出会いを通して明かされる味わい深いストーリー"
+        ],
+        "caveats": [
+          "クリアまでのプレイ時間は7〜10時間程度と短めで、エンディング後の展開に余白を残したビターな余韻がある",
+          "アクション自体は控えめだが、一部の敵からの逃走シーンやカメラワークで苦戦・酔いを感じることがある"
+        ],
+        "specs_note": "64ビットOS（Windows 10）が必須。最低環境でGTX 650 Ti程度が求められますが、美しいサイバーシティを快適に描写するにはミドルスペック以上のPCが推奨されます。",
+        "language_note": "日本語に完全対応。UIやロボットたちの会話テキストも自然な日本語で表示されるため、物語や世界観を存分に楽しめます。"
+      }
+    },
+    {
+      "app_id": 2124490,
+      "name": "SILENT HILL 2",
+      "developers": [
+        "Bloober Team SA"
+      ],
+      "publishers": [
+        "KONAMI"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2124490/header.jpg?t=1744248682",
+      "short_description": "死んだ妻から届いた手紙をきっかけに、思い出の街「サイレントヒル」を訪れたジェイムス。 街は深い霧に包まれ、異形のクリーチャーが徘徊するゴーストタウンとなっていた。 クリーチャーと戦い、謎を解きながら、妻の手がかりを求めて街を探索する『SILENT HILL 2』のリメイク作品です。",
+      "price_formatted": "¥ 8,580",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 64111,
+      "total_positive": 60683,
+      "positive_percent": 94.7,
+      "ccu": 567,
+      "ccu_prev": 539,
+      "ccu_delta": 28,
+      "ccu_display": "567 +28",
+      "release_date": "2024年10月8日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, スペイン語－ラテンアメリカ, ポーランド語, ロシア語, 中国語（簡体字）, 中国語（繁体字）, 日本語 * , 韓国語, ウクライナ語, ポルトガル語－ブラジル * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 x64 プロセッサー: Intel Core i7-6700K | AMD Ryzen 5 3600 メモリー: 16 GB RAM グラフィック: NVIDIA® GeForce® GTX 1070 Ti or AMD Radeon™ RX 5700 or Intel® Arc™ A750 DirectX: Version 12 ストレージ: 50 GB の空き容量 サウンドカード: Windows Compatible Audio Device. 追記事項: Playing on minimum requirements should enable to play on Low/Medium quality settings in FullHD (1080p) in stable 30 F",
+      "steam_url": "https://store.steampowered.com/app/2124490/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:02:05+09:00",
+      "updated_at_jst": "2026-08-24 23:02 JST",
+      "summarized_at": "2026-08-24T23:02:24+09:00",
+      "summary": {
+        "excerpt": "名作心理ホラーが現代技術で鮮やかに蘇る！霧に包まれた街で繰り広げられる重厚なストーリーと圧倒的な音響演出が、プレイヤーを静かな恐怖の深淵へと引きずり込む。",
+        "why_now": "名作ホラー『SILENT HILL 2』のフルリメイクとして登場し、原作ファンのみならず新規サバイバルホラーファンからも「最高峰のリメイク」として世界中で絶賛されています。",
+        "buzz_story": "発表当初はファンからの不安の声もありましたが、リリース直後から原作への深いリスペクトと進化した圧倒的なグラフィック・音響表現が話題を呼び、口コミで絶賛が広がりました。",
+        "three_line_summary": [
+          "名作ホラーのフルリメイクとして圧倒的な完成度を誇り、94%を超える高評価を獲得して話題を集めています。",
+          "原作の心理ホラー表現を現代技術で完璧に再構築したクオリティが口コミで広がり、大きなバズとなりました。",
+          "視界を遮る濃霧と不気味な環境音に包まれ、重厚で切ない物語を紐解く濃密な心理サバイバルホラー体験です。"
+        ],
+        "swamp_points": [
+          "環境音と視界を阻む霧が醸し出す、ジャンプスケアに頼らない圧倒的な没入感と恐怖演出",
+          "単なるホラーにとどまらない、プレイヤーの心に強く残る重厚で深く切ないストーリー展開",
+          "限られた弾薬と回復アイテムを繰り回しながら異形の存在に立ち向かう緊迫した探索体験"
+        ],
+        "caveats": [
+          "室内や暗所が非常に暗く見えづらい場面があるほか、高難易度ではリソース枯渇により詰み状態になりやすい",
+          "PCの利用環境によってはスタッター（カクつき）が発生するケースが報告されている"
+        ],
+        "specs_note": "画質設定「低/中」の1080p/30FPS動作でGTX 1070 Ti以上、メモリ16GBが最低要件となっています。快適なプレイには余裕のあるスペックが推奨されます。",
+        "language_note": "日本語のUI、字幕およびフル音声に完全対応しています。"
+      }
+    },
+    {
+      "app_id": 1086940,
+      "name": "Baldur's Gate 3",
+      "developers": [
+        "Larian Studios"
+      ],
+      "publishers": [
+        "Larian Studios"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1777363040",
+      "short_description": "Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.",
+      "price_formatted": "¥ 8,499",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 854370,
+      "total_positive": 826911,
+      "positive_percent": 96.8,
+      "ccu": 50170,
+      "ccu_prev": 50170,
+      "ccu_delta": 0,
+      "ccu_display": "50,170",
+      "release_date": "2023年8月4日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, ドイツ語, スペイン語 - スペイン, ポーランド語, ロシア語, 中国語（簡体字）, トルコ語, ポルトガル語－ブラジル, イタリア語, スペイン語－ラテンアメリカ, 中国語（繁体字）, ウクライナ語, 韓国語, 日本語 * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 64-bit プロセッサー: Intel I5 4690 / AMD FX 8350 / Snapdragon X Elite メモリー: 8 GB RAM グラフィック: Nvidia GTX 970 / RX 480 / Intel Arc A380 / Qualcomm Adreno X1 (4GB+ of VRAM) DirectX: Version 11 ストレージ: 150 GB の空き容量 追記事項: SSD required",
+      "steam_url": "https://store.steampowered.com/app/1086940/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:05:53+09:00",
+      "updated_at_jst": "2026-08-24 23:05 JST",
+      "summarized_at": "2026-08-24T23:11:03+09:00",
+      "summary": {
+        "excerpt": "Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons",
+        "why_now": "Baldur's Gate 3 は今、CCU 50,170 / 96.8% positive。",
+        "buzz_story": "Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival",
+        "three_line_summary": [
+          "Baldur's Gate 3 は今、CCU 50,170 / 96.8% positive。",
+          "Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a t",
+          "Baldur's Gate 3 / 圧倒的に好評 96.8%"
+        ],
+        "swamp_points": [
+          "「もう嫌だ！やりたくない！」とゲームを消して5分後にまたやり始めてる不思議なゲームです。 難しいしやたら詰む箇所が多い気がするのですが、ゲームを一旦消してお茶飲",
+          "これが「RPG」だ、という感じの骨太ゲーム。 システムは非常に複雑で説明も少ない。 何をどうしたらいいのかわからないまま敵に蹂躙されることも多々。 しかしシステ"
+        ],
+        "caveats": [
+          "現在のバランスや難易度は更新で変わる可能性があります。"
+        ],
+        "specs_note": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 64-bit プロセッサー: Intel I5 4690 / AMD FX 8350 / Snapdragon X Elite メモリー: 8 GB RAM グラフィック: Nvidia GTX 970 / RX 480 / Intel Arc A380 / Qualcomm Adreno X1 (4GB+ of VRAM) DirectX: Version 11 ストレージ: ",
+        "language_note": "日本語対応あり。"
+      }
+    },
+    {
+      "app_id": 1245620,
+      "name": "ELDEN RING",
+      "developers": [
+        "FromSoftware, Inc."
+      ],
+      "publishers": [
+        "FromSoftware, Inc.",
+        "Bandai Namco Entertainment"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1784684281",
+      "short_description": "本作は、本格的なダークファンタジーの世界を舞台にしたアクションRPGタイトルです。 広大なフィールドとダンジョン探索による未知の発見。立ちはだかる困難と、それを乗り越えた時の達成感。そして、登場人物たちの思惑が交錯する群像劇をお楽しみいただけます。",
+      "price_formatted": "¥ 9,020",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 1149922,
+      "total_positive": 1070349,
+      "positive_percent": 93.1,
+      "ccu": 34248,
+      "ccu_prev": 34248,
+      "ccu_delta": 0,
+      "ccu_display": "34,248",
+      "release_date": "2022年2月25日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, 日本語, 韓国語, ポーランド語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）, スペイン語－ラテンアメリカ, タイ語, 中国語（繁体字）, アラビア語 * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 プロセッサー: INTEL CORE I5-8400 or AMD RYZEN 3 3300X メモリー: 12 GB RAM グラフィック: NVIDIA GEFORCE GTX 1060 3 GB or AMD RADEON RX 580 4 GB DirectX: Version 12 ストレージ: 60 GB の空き容量 サウンドカード: Windows Compatible Audio Device 追記事項:",
+      "steam_url": "https://store.steampowered.com/app/1245620/?utm_source=indiegem",
+      "updated_at": "2026-08-24T23:11:09+09:00",
+      "updated_at_jst": "2026-08-24 23:11 JST",
+      "summarized_at": "2026-08-24T23:17:03+09:00",
+      "summary": {
+        "excerpt": "本作は、本格的なダークファンタジーの世界を舞台にしたアクションRPGタイトルです。 広大なフィールドとダンジョン探索による未知の発見。立ちはだかる困難と、それを乗り越えた時の達成感",
+        "why_now": "ELDEN RING は今、CCU 34,248 / 93.1% positive。",
+        "buzz_story": "本作は、本格的なダークファンタジーの世界を舞台にしたアクションRPGタイトルです。 広大なフィールドとダンジョン探索による未知の発見。立ちはだかる困難と、それを乗り越えた時の達成感。そして、登場人物たちの思惑が交錯する群像劇をお楽しみいただけます。",
+        "three_line_summary": [
+          "ELDEN RING は今、CCU 34,248 / 93.1% positive。",
+          "本作は、本格的なダークファンタジーの世界を舞台にしたアクションRPGタイトルです。 広大なフィールドとダンジョン探索による未知の発見。立ちはだかる困難と、それを乗り越えた時の達成感。そして、登場人物たちの思惑が交錯する群像劇をお楽しみいただ",
+          "ELDEN RING / 非常に好評 93.1%"
+        ],
+        "swamp_points": [
+          "初のフロムゲー。アクション苦手。パリィとか上手く出来る？合わなかったらどうしようと思いながら、4月の最初あたりからプレイしています。探索とかは大好き傾向にあるの",
+          "高難易度の死にゲーという面だけが強調され過ぎてますが、実際は戦闘面も丁寧に作り込んであって一見不可能に見えるボス戦であっても抜け道や対策が用意されているため、そ"
+        ],
+        "caveats": [
+          "現在のバランスや難易度は更新で変わる可能性があります。"
+        ],
+        "specs_note": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 プロセッサー: INTEL CORE I5-8400 or AMD RYZEN 3 3300X メモリー: 12 GB RAM グラフィック: NVIDIA GEFORCE GTX 1060 3 GB or AMD RADEON RX 580 4 GB DirectX: Version 12 ストレージ: 60 GB の空き容量 サウンドカード: Windows Compatib",
+        "language_note": "日本語対応あり。"
+      }
+    },
+    {
+      "app_id": 1158310,
+      "name": "Crusader Kings III",
+      "developers": [
+        "Paradox Development Studio"
+      ],
+      "publishers": [
+        "Paradox Interactive"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1158310/8a7e814d13f8e73c0d40471f585ece908f9be282/header.jpg?t=1785862913",
+      "short_description": "愛と戦い、策略の果てに名声を手に入れる。壮大かつ荘厳な「Crusader Kings III」の世界で自らの一族が何を残せるか、それはあなた次第。生き生きと描かれる中世世界で、繁栄を極める王朝を築く長い旅。死はその始まりに過ぎません。",
+      "price_formatted": "¥ 2,097",
+      "discount_percent": 70,
+      "is_free": false,
+      "review_score_desc": "非常に好評",
+      "total_reviews": 142991,
+      "total_positive": 129305,
+      "positive_percent": 90.4,
+      "ccu": 24527,
+      "ccu_prev": 24527,
+      "ccu_delta": 0,
+      "ccu_display": "24,527",
+      "release_date": "2020年9月2日",
+      "coming_soon": false,
+      "supported_languages": "英語 * , フランス語, ドイツ語, スペイン語 - スペイン, ロシア語, 中国語（簡体字）, 韓国語, ポーランド語, 日本語 * フル音声対応言語",
+      "has_japanese": true,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows® 10 Home 64 bit プロセッサー: Intel Core i5-750 | AMD FX 4300 メモリー: 8 GB RAM グラフィック: NVIDIA GeForce GTX 660 | AMD Radeon HD 7870 | Intel Arc A310 | Intel Iris Plus G7 | AMD Radeon Vega 11 ストレージ: 20 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/1158310/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:58:49+09:00",
+      "updated_at_jst": "2026-08-24 22:58 JST",
+      "summarized_at": "2026-08-24T22:59:25+09:00",
+      "summary": {
+        "excerpt": "中世の君主となり王朝の繁栄を目指す大作ストラテジーが70%オフセールで大盛況！愛憎入り混じる人間ドラマと本格政治劇に病みつきになるプレイヤーが続出中。",
+        "why_now": "70%オフの2,097円という大幅割引セールが実施されたことで、同時接続者数が2万4000人を超え急上昇しています。",
+        "buzz_story": "Paradoxが手掛ける歴史ストラテジーの金字塔として、圧倒的な自由度とドラマ性で発売当初から高評価を獲得。定期的な大型DLCやMODコミュニティの盛り上がりに加え、今回の大型セールで新規プレイヤーが押し寄せ再浮上しました。",
+        "three_line_summary": [
+          "70%オフの2,097円という衝撃的なセールをきっかけに同接2.4万人超えの大盛況を見せています。",
+          "歴史ストラテジーの名作として高い評価を受け、ドラマチックな人間模様を生み出すゲーム性で根強い人気を誇ります。",
+          "自分だけの一族を率いて陰謀や政略結婚を繰り広げる、泥沼の愛憎劇と国家運営が融合した中毒性抜群のゲームです。"
+        ],
+        "swamp_points": [
+          "「中世版シムズ」とも称される、政略結婚や陰謀、愛憎劇が次々に起こる唯一無二のロールプレイ体験。",
+          "プレイするたびに全く異なる歴史が紡がれる圧倒的なリプレイ性と、広大な拡張MODエコシステム。"
+        ],
+        "caveats": [
+          "本編だけでも遊べるものの、フル体験には高額なDLCを複数揃える必要がある点。",
+          "ゲーム起動時のロード時間の長さや、進行に伴うメモリ消費とパフォーマンス低下の指摘。"
+        ],
+        "specs_note": "必要容量は20GBですが、ゲーム後半のマップ処理や起動時間の長さから、SSDの導入や十分なメモリを積んだPC環境でのプレイが推奨されます。",
+        "language_note": "公式で日本語に対応しており、複雑なテキストや歴史用語も安心して日本語で楽しむことができます。"
+      }
+    },
+    {
+      "app_id": 3164500,
+      "name": "Schedule I",
+      "developers": [
+        "TVGS"
+      ],
+      "publishers": [
+        "TVGS"
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg?t=1785744977",
+      "short_description": "From small-time dope pusher to kingpin - manufacture and distribute a range of drugs throughout the grungy city of Hyland Point. Expand your empire with properties, businesses, employees and more.",
+      "price_formatted": "¥ 2,300",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 313687,
+      "total_positive": 306796,
+      "positive_percent": 97.8,
+      "ccu": 7435,
+      "ccu_prev": 7435,
+      "ccu_delta": 0,
+      "ccu_display": "7,435",
+      "release_date": "2025年3月25日",
+      "coming_soon": false,
+      "supported_languages": "英語 * * フル音声対応言語",
+      "has_japanese": false,
+      "pc_requirements": "最低: 64 ビットプロセッサとオペレーティングシステムが必要です OS: Windows 10 (64-bit) プロセッサー: 3GHz 4-Core or similar メモリー: 8 GB RAM グラフィック: GeForce GTX 1060 6GB or Radeon RX 580 DirectX: Version 11 ストレージ: 8 GB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/3164500/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:53:26+09:00",
+      "updated_at_jst": "2026-08-24 22:53 JST",
+      "summarized_at": "2026-08-24T22:53:42+09:00",
+      "summary": {
+        "excerpt": "裏路地の売人から街の暗黒街を支配する帝王へ！奇天烈な効能の薬品を調合し、顧客を沼らせ事業を拡大していく圧倒的に好評なマルチ対応シミュレーター。",
+        "why_now": "圧倒的に好評（97.8%）という驚異的な評価を獲得し、現在も7,000人以上の同時接続者数を維持するほど世界中で熱狂的なヒットとなっているため。",
+        "buzz_story": "YouTubeや実況配信をきっかけに爆発的に注目を集めました。奇妙な効果を持つ薬品調合のバカバカしさと、友達と一緒に裏社会の帝国を拡大できる中毒性の高いマルチプレイが口コミで広がりヒットに繋がっています。",
+        "three_line_summary": [
+          "97.8%という驚異的な高評価と高い同時接続者数を記録し、中毒性の高い経営シミュレーションとして世界中で話題を呼んでいます。",
+          "YouTubeやゲーム配信を皮切りに人気へ火が付き、フレンドと一緒にマルチで遊べるカオスなゲーム性が口コミで拡散されました。",
+          "奇想天外な効果を持つ薬品を調合して顧客に売りつけ、裏社会の帝国を拡大していくシュールでやり込み要素満載の作風です。"
+        ],
+        "swamp_points": [
+          "変な効果を生むオリジナル薬品の調合実験と顧客のイカれた反応を見る楽しさ",
+          "資金を稼いで物件や従業員を増やし、自分だけの裏帝国を築き上げる圧倒的成長感",
+          "フレンドと一緒に協力してカオスな街で大暴れできるマルチプレイの中毒性"
+        ],
+        "caveats": [
+          "公式で日本語に対応しておらずチュートリアルも少ないため、プレイには有志翻訳MODの導入や自力で調べる工夫が必要",
+          "ゲーム後半になると作業感が強くなり、コンテンツ不足やマルチプレイ時のバグを感じる場合がある"
+        ],
+        "specs_note": "最低動作環境としてGTX 1060クラスのグラフィックボードと8GBメモリが必要となります。3Dの街並みを探索するため、標準的なゲーミングPCでのプレイが推奨されます。",
+        "language_note": "公式では日本語非対応（英語音声・字幕のみ）ですが、コミュニティによる日本語化MODが存在するため、導入すれば快適にプレイ可能です。"
+      }
+    },
+    {
+      "app_id": 504230,
+      "name": "Celeste",
+      "developers": [
+        "Maddy Makes Games Inc.",
+        "Extremely OK Games, Ltd."
+      ],
+      "publishers": [
+        "Maddy Makes Games Inc."
+      ],
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525",
+      "short_description": "心の闇と戦う少女マデリンとともに、セレステ山の頂上を目指せ。気軽に遊べて奥が深い、手に汗握るアクションゲーム。数百におよぶ難関に立ち向かい、聖山の怪しげな秘密を探り、謎に迫れ。",
+      "price_formatted": "¥ 2,300",
+      "discount_percent": 0,
+      "is_free": false,
+      "review_score_desc": "圧倒的に好評",
+      "total_reviews": 146079,
+      "total_positive": 142287,
+      "positive_percent": 97.4,
+      "ccu": 2077,
+      "ccu_prev": 2077,
+      "ccu_delta": 0,
+      "ccu_display": "2,077",
+      "release_date": "2018年1月26日",
+      "coming_soon": false,
+      "supported_languages": "英語, フランス語, イタリア語, ドイツ語, スペイン語 - スペイン, 日本語, ポルトガル語－ブラジル, ロシア語, 中国語（簡体字）",
+      "has_japanese": true,
+      "pc_requirements": "最低: OS *: Windows 7 or newer プロセッサー: Intel Core i3 M380 メモリー: 2 GB RAM グラフィック: Intel HD 4000 DirectX: Version 10 ストレージ: 1200 MB の空き容量",
+      "steam_url": "https://store.steampowered.com/app/504230/?utm_source=indiegem",
+      "updated_at": "2026-08-24T22:55:50+09:00",
+      "updated_at_jst": "2026-08-24 22:55 JST",
+      "summarized_at": "2026-08-24T22:56:05+09:00",
+      "summary": {
+        "excerpt": "心の闇と向き合い聖山セレステ登頂を目指す、高難易度2Dアクションの金字塔。ミスしても一瞬でリトライできる抜群の操作性と、葛藤を描く感銘深いストーリーがプレイヤーを魅了する。",
+        "why_now": "圧倒的好評（97.4%）を維持し続ける精密アクションの傑作として、現在も常時2,000人以上の同時接続数を誇るロングセラー作品です。",
+        "buzz_story": "リリース直後から洗練されたレベルデザインと美しいBGMで口コミが拡散。過酷な死にゲーでありながら即時復帰できる快適性と、主人公の葛藤を描く感動的なシナリオが相まって、2Dプラットフォーマーの金字塔として確立されました。",
+        "three_line_summary": [
+          "高難易度アクションの代名詞として現在も多くのプレイヤーに支持され、高い評価を維持しています。",
+          "完璧な操作性と一秒でやり直せる快適性、葛藤を描くストーリーと音楽が絶賛されて口コミが広がりました。",
+          "心の闇を抱えた少女マデリンを操作し、壁登りやダッシュを駆使して険しい聖山を登り詰める2D精密アクションです。"
+        ],
+        "swamp_points": [
+          "ミスしても一瞬で復帰できる超高速リトライ構造により、何百回死亡してもストレスなく無限に挑戦してしまう中毒性。",
+          "手に吸い付くような抜群の操作応答性と、高難度エリアをプレイヤー自身の技術で突破した際の強烈な達成感。"
+        ],
+        "caveats": [
+          "何千回もの死亡が前提となる高難易度ゲームのため、アクション操作や高精密な入力を苦手とする人には挫折のリスクがあります。",
+          "高難度のやり込み要素（B面・C面・Chapter 9など）は要求される精度が激増し、一部のギミックで強い理不尽さを感じる場合があります。"
+        ],
+        "specs_note": "Core i3プロセッサーやIntel HD 4000相当の内蔵グラフィック、メモリ2GBと極めて低いスペックで快適に動作します。",
+        "language_note": "公式で日本語表示（UIおよびテキスト）に対応しています。"
+      }
+    }
+  ]
+}

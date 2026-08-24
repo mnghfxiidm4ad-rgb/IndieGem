@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IndieGem">
+  <rect width="64" height="64" rx="14" fill="#0b0d12"/>
+  <path d="M32 8 L52 26 L32 56 L12 26 Z" fill="#3ddeb5"/>
+  <path d="M32 8 L42 26 L32 56 L22 26 Z" fill="#7af0d0"/>
+  <path d="M12 26 H52 L32 8 Z" fill="#e8c36a"/>
+</svg>

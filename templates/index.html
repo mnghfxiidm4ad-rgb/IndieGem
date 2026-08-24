@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IndieGem | 隠れた名作と急上昇インディー</title>
+  <meta name="description" content="Steamの隠れた名作と急上昇インディーゲームを、多言語レビューから日本語で自動要約するメディア。同接・好評率・セールで探せます。">
+  <link rel="canonical" href="{{ site_base_url }}/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IndieGem | 隠れた名作と急上昇インディー">
+  <meta property="og:description" content="Steamインディーをデータベース型UIで俯瞼し、AIが日本語で要点を抽出します。">
+  <meta property="og:url" content="{{ site_base_url }}/">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/favicon.svg" alt="">
+        <div>
+          <strong>IndieGem</strong>
+          <span>インディージェム</span>
+        </div>
+      </a>
+      <div class="updated">更新 {{ updated_at_jst }}</div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Steamの隠れた名作と、いま伸びているインディーを最速発掘。</h1>
+      <p>Steamの公開データとプレイヤーレビューを毎日収集し、Geminiが「なぜ今話題なのか」を3行に圧縮します。同接の急上昇、好評率、セール割引で並べ替えて探せます。</p>
+    </section>
+    <div class="toolbar">
+      <div class="sorts" role="group" aria-label="並び替え">
+        <button type="button" data-sort="rising" aria-pressed="true">同接急上昇順</button>
+        <button type="button" data-sort="rating" aria-pressed="false">好評率順</button>
+        <button type="button" data-sort="discount" aria-pressed="false">セール割引順</button>
+      </div>
+      <div class="filters">
+        <input type="search" data-search placeholder="タイトル / 開発元で検索" aria-label="検索">
+        <label><input type="checkbox" data-sale-only> セール中のみ</label>
+      </div>
+    </div>
+    <p class="count"><span data-visible-count>{{ games|length }}</span> / {{ games|length }} タイトル</p>
+    <section class="grid" data-game-grid>
+      {% for g in games %}
+      <article class="card"
+        data-ccu="{{ g.ccu }}"
+        data-ccu-delta="{{ g.ccu_delta }}"
+        data-positive="{{ g.positive_percent }}"
+        data-discount="{{ g.discount_percent }}"
+        data-name="{{ g.name }}"
+        data-developer="{{ g.developers|join(' ') }}">
+        <a href="posts/{{ g.app_id }}.html">
+          <div class="thumb">
+            <img src="{{ g.header_image }}" alt="{{ g.name }}">
+            {% if g.discount_percent > 0 %}
+            <div class="badge">-{{ g.discount_percent }}%</div>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <h2>{{ g.name }}</h2>
+            <p class="dev">{{ g.developers|join(', ') or '開発元不明' }}</p>
+            <div class="stats">
+              <div class="stat"><b>{{ g.price_formatted }}</b><span>価格</span></div>
+              <div class="stat"><b>{{ g.ccu_display }}</b><span>同接</span></div>
+              <div class="stat"><b>{{ g.positive_percent }}%</b><span>{{ g.review_score_desc }}</span></div>
+            </div>
+            <p class="excerpt">{{ g.summary.excerpt }}</p>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">IndieGem は Steam の公開 API とプレイヤーレビューを編集・要約した非公式メディアです。掲載情報は取得時点のものです。</div>
+  </footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
