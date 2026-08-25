@@ -7,11 +7,12 @@
   if (!grid) return;
 
   const cards = Array.from(grid.querySelectorAll(".card"));
-  let currentSort = "rising";
+  let currentSort = "newest";
 
   const number = (el, key) => Number(el.dataset[key] || 0);
 
   const sorters = {
+    newest: (a, b) => String(b.dataset.added || "").localeCompare(String(a.dataset.added || "")),
     rising: (a, b) =>
       number(b, "ccuDelta") - number(a, "ccuDelta") ||
       number(b, "ccu") - number(a, "ccu"),
@@ -42,7 +43,7 @@
 
   sortButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      currentSort = btn.dataset.sort || "rising";
+      currentSort = btn.dataset.sort || "newest";
       sortButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
       apply();
     });

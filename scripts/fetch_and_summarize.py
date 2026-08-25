@@ -58,6 +58,8 @@ SEED_APP_IDS = [
 ]
 JST = timezone(timedelta(hours=9))
 STEAM_SLEEP = 1.2
+GEMINI_CALL_SLEEP = 7
+GEMINI_RETRY_WAITS = (15, 30, 60)
 LOG = logging.getLogger("indiegem")
 
 REVIEW_SCORE_JA = {
@@ -129,6 +131,35 @@ def setup_logging() -> None:
 def env_int(name: str, default: int) -> int:
     raw = os.getenv(name, "").strip()
     return int(raw) if raw else default
+
+
+class GeminiQuotaError(RuntimeError):
+    """Daily Gemini quota is exhausted; later titles should skip the API."""
+
+
+def classify_gemini_error(exc: Exception) -> str:
+    """Return 'daily', 'rpm', or 'other' from a Gemini SDK / HTTP error."""
+    text = str(exc)
+    low = text.lower()
+    compact = re.sub(r"\s+", "", low)
+    retry_s = None
+    match = re.search(r"retry in (\d+(?:\.\d+)?)s", text, flags=re.I)
+    if match:
+        retry_s = float(match.group(1))
+    daily_tokens = (
+        "perday",
+        "requestsperday",
+        "generaterequestsperday",
+        "exceededyourcurrentquota",
+        "quotaexceeded",
+    )
+    if retry_s is not None and retry_s >= 300:
+        return "daily"
+    if any(token in compact for token in daily_tokens):
+        return "daily"
+    if "429" in low or "resource_exhausted" in compact or "ratelimit" in compact:
+        return "rpm"
+    return "other"
 
 
 def now_jst() -> datetime:
@@ -535,12 +566,21 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
         "reviews_japanese": reviews_ja[:12],
         "reviews_english": reviews_en[:12],
     }
+    models: list[str] = []
+    for name in (model_name, "gemini-3.6-flash", "gemini-2.5-flash"):
+        if name and name not in models:
+            models.append(name)
+
     client = genai.Client(api_key=api_key)
     last_error = None
-    for attempt in range(6):
+    model_idx = 0
+    for attempt in range(4):
+        active_model = models[min(model_idx, len(models) - 1)]
+        LOG.info("Gemini wait %ss before request (%s, attempt %s)", GEMINI_CALL_SLEEP, active_model, attempt + 1)
+        time.sleep(GEMINI_CALL_SLEEP)
         try:
             response = client.models.generate_content(
-                model=model_name,
+                model=active_model,
                 contents=json.dumps(prompt, ensure_ascii=False),
                 config={
                     "temperature": 0.4,
@@ -551,17 +591,27 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
             )
             text = getattr(response, "text", None) or ""
             parsed = json.loads(text)
+            LOG.info("Gemini wait %ss after success", GEMINI_CALL_SLEEP)
+            time.sleep(GEMINI_CALL_SLEEP)
             return normalize_summary(parsed)
         except Exception as exc:  # noqa: BLE001 - API surface varies by SDK version
             last_error = exc
-            LOG.warning("Gemini failed attempt %s: %s", attempt + 1, exc)
-            wait = 2 ** attempt + 1
-            match = re.search(r"retry in (\d+(?:\.\d+)?)s", str(exc), flags=re.I)
-            if match:
-                wait = max(wait, int(float(match.group(1))) + 2)
-            LOG.info("sleep %ss before Gemini retry", wait)
+            kind = classify_gemini_error(exc)
+            err_text = str(exc)
+            not_found = "404" in err_text or "not found" in err_text.lower()
+            LOG.warning("Gemini failed attempt %s/4 (%s, %s): %s", attempt + 1, kind, active_model, exc)
+            if not_found and model_idx + 1 < len(models):
+                model_idx += 1
+                LOG.info("switching Gemini model to %s", models[model_idx])
+                continue
+            if attempt >= 3:
+                break
+            wait = GEMINI_RETRY_WAITS[attempt]
+            LOG.info("exponential backoff: sleep %ss before Gemini retry", wait)
             time.sleep(wait)
     LOG.error("Gemini gave up: %s", last_error)
+    if last_error and classify_gemini_error(last_error) == "daily":
+        raise GeminiQuotaError(str(last_error)) from last_error
     return None
 
 
@@ -611,6 +661,8 @@ def assemble_game(
         "steam_url": f"https://store.steampowered.com/app/{app_id}/?utm_source=indiegem",
         "updated_at": iso_now(),
         "updated_at_jst": format_jst(),
+        "added_at": (previous or {}).get("added_at") or iso_now(),
+        "added_at_jst": (previous or {}).get("added_at_jst") or format_jst(),
     }
     return game
 
@@ -642,7 +694,11 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
         autoescape=select_autoescape(["html"]),
     )
-    ranked = sorted(games, key=lambda g: (g.get("ccu_delta", 0), g.get("ccu", 0)), reverse=True)
+    ranked = sorted(
+        games,
+        key=lambda g: g.get("added_at") or g.get("updated_at") or "",
+        reverse=True,
+    )
     og_image = ranked[0]["header_image"] if ranked else f"{site_base_url}/assets/favicon.svg"
     index_html = env.get_template("index.html").render(
         games=ranked,
@@ -694,55 +750,137 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
     LOG.info("rendered index + %s posts", len(ranked))
 
 
-def process_one(
+def is_game_app(details: dict[str, Any]) -> bool:
+    app_type = str(details.get("type") or "").lower()
+    return app_type in ("", "game")
+
+
+def ensure_added_at(game: dict[str, Any]) -> dict[str, Any]:
+    if not game.get("added_at"):
+        game["added_at"] = game.get("summarized_at") or game.get("updated_at") or iso_now()
+    if not game.get("added_at_jst"):
+        game["added_at_jst"] = format_jst()
+    return game
+
+
+def refresh_existing_game(session: requests.Session, previous: dict[str, Any]) -> dict[str, Any]:
+    """Update Steam metrics only. Keep the existing Japanese summary."""
+    app_id = int(previous["app_id"])
+    details = fetch_app_details(session, app_id)
+    if not details:
+        LOG.warning("keep previous metrics for %s; Steam details missing", app_id)
+        return ensure_added_at(previous)
+    summary_all, _ = fetch_reviews(session, app_id, "all", limit=1)
+    ccu = fetch_ccu(session, app_id)
+    game = assemble_game(app_id, details, summary_all, [], ccu, previous)
+    game["summary"] = normalize_summary(previous.get("summary") or fallback_summary(game, []))
+    game["summarized_at"] = previous.get("summarized_at") or previous.get("updated_at") or iso_now()
+    game["added_at"] = previous.get("added_at") or previous.get("summarized_at") or previous.get("updated_at") or iso_now()
+    game["added_at_jst"] = previous.get("added_at_jst") or format_jst()
+    return game
+
+
+def pick_new_app_ids(
+    session: requests.Session,
+    candidates: list[int],
+    existing_ids: set[int],
+    limit: int,
+) -> list[int]:
+    selected: list[int] = []
+    for app_id in candidates:
+        if len(selected) >= limit:
+            break
+        if app_id in existing_ids:
+            continue
+        details = fetch_app_details(session, app_id)
+        if not details:
+            continue
+        if not is_game_app(details) and app_id not in SEED_APP_IDS:
+            LOG.info("skip non-game %s (%s)", app_id, details.get("type"))
+            continue
+        if app_id not in SEED_APP_IDS and not is_indie(details):
+            LOG.info("skip non-indie %s", app_id)
+            continue
+        selected.append(app_id)
+        LOG.info("queued new title %s (%s)", app_id, details.get("name"))
+    return selected
+
+
+def ingest_new_game(
     session: requests.Session,
     app_id: int,
-    previous: dict[str, Any] | None,
     gemini_key: str,
     model_name: str,
-    ttl_days: int,
     skip_gemini: bool,
+    gemini_state: dict[str, Any],
 ) -> dict[str, Any] | None:
     details = fetch_app_details(session, app_id)
     if not details:
         return None
-    if details.get("type") not in (None, "game", "Game") and str(details.get("type", "")).lower() != "game":
-        if app_id not in SEED_APP_IDS:
-            LOG.info("skip non-game %s (%s)", app_id, details.get("type"))
-            return None
+    if not is_game_app(details) and app_id not in SEED_APP_IDS:
+        return None
     summary_all, _ = fetch_reviews(session, app_id, "all", limit=1)
     _, reviews_ja = fetch_reviews(session, app_id, "japanese", limit=15)
     _, reviews_en = fetch_reviews(session, app_id, "english", limit=15)
     ccu = fetch_ccu(session, app_id)
-    game = assemble_game(app_id, details, summary_all, reviews_ja, ccu, previous)
-
-    need_ai = should_resummarize(previous, ttl_days, game["total_reviews"])
+    game = assemble_game(app_id, details, summary_all, reviews_ja, ccu, None)
     summary = None
-    used_gemini = False
-    if previous and not need_ai:
-        summary = previous.get("summary")
-        game["summarized_at"] = previous.get("summarized_at") or previous.get("updated_at")
-    elif gemini_key and not skip_gemini:
-        summary = gemini_summarize(game, reviews_ja, reviews_en, model_name, gemini_key)
-        used_gemini = summary is not None
-        time.sleep(2.0)
+    allow_gemini = (
+        bool(gemini_key)
+        and not skip_gemini
+        and not gemini_state.get("blocked")
+        and int(gemini_state.get("remaining") or 0) > 0
+    )
+    if allow_gemini:
+        try:
+            summary = gemini_summarize(game, reviews_ja, reviews_en, model_name, gemini_key)
+            if summary:
+                gemini_state["remaining"] = int(gemini_state["remaining"]) - 1
+                game["summarized_at"] = iso_now()
+                LOG.info("gemini summary for %s; remaining=%s", game["name"], gemini_state["remaining"])
+        except GeminiQuotaError as exc:
+            LOG.warning("Gemini daily quota reached; remaining new titles use store fallback: %s", exc)
+            gemini_state["blocked"] = True
+            gemini_state["remaining"] = 0
     if not summary:
         summary = fallback_summary(game, reviews_ja + reviews_en)
         game["summarized_at"] = iso_now()
         LOG.info("fallback summary for %s", game["name"])
-    elif used_gemini:
-        game["summarized_at"] = iso_now()
     game["summary"] = normalize_summary(summary)
     return game
 
 
+def trim_catalog(games: list[dict[str, Any]], max_games: int) -> list[dict[str, Any]]:
+    if len(games) <= max_games:
+        return games
+    seeds = [g for g in games if int(g["app_id"]) in SEED_APP_IDS]
+    others = [g for g in games if int(g["app_id"]) not in SEED_APP_IDS]
+    others.sort(key=lambda g: g.get("added_at") or "", reverse=True)
+    room = max(0, max_games - len(seeds))
+    kept = seeds + others[:room]
+    LOG.info("trimmed catalog %s -> %s (cap %s)", len(games), len(kept), max_games)
+    return kept
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build the IndieGem static catalog")
-    parser.add_argument("--seed-only", action="store_true", help="Process only the 4 seed AppIDs")
+    parser.add_argument("--seed-only", action="store_true", help="Refresh existing titles only; do not add new games")
     parser.add_argument("--skip-gemini", action="store_true", help="Skip Gemini and use fallback summaries")
-    parser.add_argument("--max-games", type=int, default=None)
-    parser.add_argument("--app-ids", default="", help="Comma-separated extra AppIDs")
-    parser.add_argument("--only-app-ids", default="", help="Process only these AppIDs")
+    parser.add_argument("--max-games", type=int, default=None, help="Catalog cap (default MAX_GAMES or 100)")
+    parser.add_argument(
+        "--max-new",
+        type=int,
+        default=None,
+        help="Max new titles to add this run (default MAX_NEW_GAMES or 3)",
+    )
+    parser.add_argument(
+        "--max-gemini",
+        type=int,
+        default=None,
+        help="Max Gemini API summaries this run (default: same as --max-new)",
+    )
+    parser.add_argument("--app-ids", default="", help="Comma-separated extra AppIDs to consider as new candidates")
+    parser.add_argument("--only-app-ids", default="", help="Add only these AppIDs as new titles this run")
     return parser.parse_args()
 
 
@@ -753,65 +891,65 @@ def main() -> int:
     steam_key = os.getenv("STEAM_API_KEY", "").strip()
     gemini_key = os.getenv("GEMINI_API_KEY", "").strip()
     model_name = os.getenv("GEMINI_MODEL", "gemini-3.6-flash").strip() or "gemini-3.6-flash"
-    max_games = args.max_games if args.max_games is not None else env_int("MAX_GAMES", 25)
-    ttl_days = env_int("SUMMARY_TTL_DAYS", 7)
+    max_games = args.max_games if args.max_games is not None else env_int("MAX_GAMES", 100)
+    max_new = args.max_new if args.max_new is not None else env_int("MAX_NEW_GAMES", 3)
+    max_gemini = args.max_gemini if args.max_gemini is not None else env_int("MAX_GEMINI_PER_RUN", max_new)
+    gemini_state = {"remaining": max(0, min(max_gemini, max_new)), "blocked": False}
+    LOG.info("limits: catalog_cap=%s max_new=%s max_gemini=%s model=%s", max_games, max_new, gemini_state["remaining"], model_name)
     site_base_url = os.getenv("SITE_BASE_URL", "").strip().rstrip("/") or "https://example.github.io/IndieGem"
     extra_ids = [int(x) for x in args.app_ids.split(",") if x.strip().isdigit()]
     only_ids = [int(x) for x in args.only_app_ids.split(",") if x.strip().isdigit()]
 
     session = build_session()
     existing = load_existing()
-    if only_ids:
-        candidates = only_ids
-    else:
-        candidates = discover_app_ids(session, steam_key, extra_ids, args.seed_only)
-
     collected: list[dict[str, Any]] = []
-    processed_ids: set[int] = set()
-    for app_id in candidates:
+
+    LOG.info("refreshing Steam metrics for %s existing titles (no Gemini)", len(existing))
+    for app_id, previous in existing.items():
+        try:
+            game = refresh_existing_game(session, previous)
+            collected.append(ensure_added_at(game))
+            LOG.info("refreshed %s (%s) ccu=%s pos=%s", game["app_id"], game["name"], game["ccu"], game["positive_percent"])
+        except Exception as exc:  # noqa: BLE001
+            LOG.exception("failed refresh %s: %s", app_id, exc)
+            collected.append(ensure_added_at(previous))
+
+    collected_ids = {int(g["app_id"]) for g in collected}
+    room = max(0, max_games - len(collected))
+    new_limit = min(max_new, room)
+
+    if args.seed_only:
+        new_ids: list[int] = []
+        LOG.info("seed-only: skip new title discovery")
+    elif only_ids:
+        new_ids = [app_id for app_id in only_ids if app_id not in collected_ids][:new_limit]
+    else:
+        candidates = discover_app_ids(session, steam_key, extra_ids, seed_only=False)
+        new_ids = pick_new_app_ids(session, candidates, collected_ids, new_limit)
+
+    added = 0
+    for app_id in new_ids:
         if len(collected) >= max_games:
             break
-        if app_id in processed_ids:
-            continue
-        processed_ids.add(app_id)
         try:
-            details_probe = None
-            if app_id not in SEED_APP_IDS:
-                details_probe = fetch_app_details(session, app_id)
-                if not details_probe or not is_indie(details_probe):
-                    LOG.info("skip non-indie %s", app_id)
-                    continue
-                # Reuse probe by temporarily caching via previous? We'll refetch below; small extra cost.
-            game = process_one(
-                session,
-                app_id,
-                existing.get(app_id),
-                gemini_key,
-                model_name,
-                ttl_days,
-                args.skip_gemini,
-            )
-            if game:
-                collected.append(game)
-                LOG.info("ok %s (%s) ccu=%s pos=%s", game["app_id"], game["name"], game["ccu"], game["positive_percent"])
+            game = ingest_new_game(session, app_id, gemini_key, model_name, args.skip_gemini, gemini_state)
+            if not game:
+                continue
+            collected.append(game)
+            added += 1
+            LOG.info("added %s (%s) ccu=%s pos=%s", game["app_id"], game["name"], game["ccu"], game["positive_percent"])
         except Exception as exc:  # noqa: BLE001
-            LOG.exception("failed app %s: %s", app_id, exc)
+            LOG.exception("failed new app %s: %s", app_id, exc)
             continue
 
     if not collected:
         LOG.error("no games collected")
         return 1
 
-    # Keep previously known games that were not refreshed, so the catalog accumulates.
-    collected_ids = {g["app_id"] for g in collected}
-    for app_id, old in existing.items():
-        if app_id not in collected_ids and old.get("summary"):
-            collected.append(old)
-
-    collected.sort(key=lambda g: (g.get("ccu_delta", 0), g.get("ccu", 0), g.get("positive_percent", 0)), reverse=True)
+    collected = trim_catalog(collected, max_games)
     save_games(collected)
     render_site(collected, site_base_url)
-    LOG.info("wrote %s", DATA_PATH)
+    LOG.info("catalog %s titles (added %s new); wrote %s", len(collected), added, DATA_PATH)
     return 0
 
 

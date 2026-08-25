@@ -7,13 +7,17 @@ on:
   workflow_dispatch:
     inputs:
       seed_only:
-        description: Process seed list only
+        description: Refresh existing titles only (do not add new games)
         type: boolean
-        default: true
+        default: false
       max_games:
-        description: Max titles to process
+        description: Catalog cap
         type: string
-        default: "25"
+        default: "100"
+      max_new:
+        description: Max new titles to add this run
+        type: string
+        default: "3"
 
 concurrency:
   group: indiegem-update
@@ -54,8 +58,9 @@ jobs:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.6-flash
-          MAX_GAMES: ${{ github.event.inputs.max_games || '25' }}
-          SUMMARY_TTL_DAYS: "7"
+          MAX_GAMES: ${{ github.event.inputs.max_games || '100' }}
+          MAX_NEW_GAMES: ${{ github.event.inputs.max_new || '3' }}
+          MAX_GEMINI_PER_RUN: ${{ github.event.inputs.max_new || '3' }}
           SITE_BASE_URL: ${{ steps.site.outputs.url }}
         run: |
           ARGS=()

@@ -34,11 +34,12 @@
   <main class="wrap">
     <section class="hero">
       <h1>Steamの隠れた名作と、いま伸びているインディーを最速発掘。</h1>
-      <p>Steamの公開データとプレイヤーレビューを毎日収集し、Geminiが「なぜ今話題なのか」を3行に圧縮します。同接の急上昇、好評率、セール割引で並べ替えて探せます。</p>
+      <p>Steamの公開データとプレイヤーレビューを毎日収集し、新規タイトルは1日最大3本追加します。新着、同接の急上昇、好評率、セール割引で並べ替えて探せます。</p>
     </section>
     <div class="toolbar">
       <div class="sorts" role="group" aria-label="並び替え">
-        <button type="button" data-sort="rising" aria-pressed="true">同接急上昇順</button>
+        <button type="button" data-sort="newest" aria-pressed="true">新着順</button>
+        <button type="button" data-sort="rising" aria-pressed="false">同接急上昇順</button>
         <button type="button" data-sort="rating" aria-pressed="false">好評率順</button>
         <button type="button" data-sort="discount" aria-pressed="false">セール割引順</button>
       </div>
@@ -55,6 +56,7 @@
         data-ccu-delta="{{ g.ccu_delta }}"
         data-positive="{{ g.positive_percent }}"
         data-discount="{{ g.discount_percent }}"
+        data-added="{{ g.added_at }}"
         data-name="{{ g.name }}"
         data-developer="{{ g.developers|join(' ') }}">
         <a href="posts/{{ g.app_id }}.html">

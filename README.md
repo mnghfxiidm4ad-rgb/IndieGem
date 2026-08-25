@@ -36,7 +36,7 @@ python scripts/fetch_and_summarize.py --seed-only
 
 ```bash
 python scripts/fetch_and_summarize.py --skip-gemini
-python scripts/fetch_and_summarize.py --max-games 8
+python scripts/fetch_and_summarize.py --max-new 3 --max-games 100
 python scripts/fetch_and_summarize.py --app-ids 2379780,1794680
 ```
 
@@ -70,7 +70,7 @@ Article: header, AI 3-line summary, swamp points, caveats, specs/language, Steam
 
 ## 運用上の注意
 
-- Steam API: `time.sleep` + retry. Control volume with `MAX_GAMES`.
-- Gemini reuse: `SUMMARY_TTL_DAYS` (default 7). Price/CCU/rating still refresh daily.
+- Steam: existing catalog titles refresh CCU / price / discount / rating every run. New indie titles are discovered and **appended** (default 3 per day, catalog cap `MAX_GAMES=100`).
+- Gemini is called **only for new titles**. Each call waits 7 seconds; 429 retries wait 15s / 30s / 60s. Daily quota (RPD) resets at **midnight Pacific Time** (JST 16:00 in summer / 17:00 in winter).
 - Affiliate / AdSense snippets can be pasted into the template slots.
 - Unofficial fan media. Data is as of fetch time.
