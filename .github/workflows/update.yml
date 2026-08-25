@@ -1,0 +1,77 @@
+name: Update IndieGem catalog
+
+on:
+  schedule:
+    # Every day at 00:00 UTC = 09:00 JST
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      seed_only:
+        description: Process seed list only
+        type: boolean
+        default: true
+      max_games:
+        description: Max titles to process
+        type: string
+        default: "25"
+
+concurrency:
+  group: indiegem-update
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Resolve site base URL
+        id: site
+        shell: bash
+        run: |
+          if [[ "${{ github.event.repository.name }}" == *.github.io ]]; then
+            echo "url=https://${{ github.repository_owner }}.github.io" >> "$GITHUB_OUTPUT"
+          else
+            echo "url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch Steam data and render site
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.6-flash
+          MAX_GAMES: ${{ github.event.inputs.max_games || '25' }}
+          SUMMARY_TTL_DAYS: "7"
+          SITE_BASE_URL: ${{ steps.site.outputs.url }}
+        run: |
+          ARGS=()
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.seed_only }}" == "true" ]]; then
+            ARGS+=(--seed-only)
+          fi
+          python scripts/fetch_and_summarize.py "${ARGS[@]}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs data/games.json
+          if git diff --staged --quiet; then
+            echo "No catalog changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update IndieGem catalog ($(date -u +%Y-%m-%d))"
+          git push
