@@ -630,6 +630,10 @@ def copy_assets() -> None:
             if file.is_file():
                 shutil.copy2(file, ASSETS_DIR / file.name)
     (DOCS_DIR / ".nojekyll").write_text("", encoding="utf-8")
+    for name in ("about.html", "privacy.html"):
+        src_page = TEMPLATES_DIR / name
+        if src_page.exists():
+            shutil.copy2(src_page, DOCS_DIR / name)
 
 
 def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
@@ -673,7 +677,11 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
         )
         (POSTS_DIR / f"{game['app_id']}.html").write_text(html_out, encoding="utf-8")
 
-    sitemap_urls = [f"{site_base_url}/"] + [f"{site_base_url}/posts/{g['app_id']}.html" for g in ranked]
+    sitemap_urls = [
+        f"{site_base_url}/",
+        f"{site_base_url}/about.html",
+        f"{site_base_url}/privacy.html",
+    ] + [f"{site_base_url}/posts/{g['app_id']}.html" for g in ranked]
     urlset = "\n".join(f"  <url><loc>{html.escape(u)}</loc></url>" for u in sitemap_urls)
     (DOCS_DIR / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'

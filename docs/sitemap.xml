@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://example.github.io/IndieGem/</loc></url>
+  <url><loc>https://example.github.io/IndieGem/about.html</loc></url>
+  <url><loc>https://example.github.io/IndieGem/privacy.html</loc></url>
   <url><loc>https://example.github.io/IndieGem/posts/413150.html</loc></url>
   <url><loc>https://example.github.io/IndieGem/posts/553850.html</loc></url>
   <url><loc>https://example.github.io/IndieGem/posts/105600.html</loc></url>
