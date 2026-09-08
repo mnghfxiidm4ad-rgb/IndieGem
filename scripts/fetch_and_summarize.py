@@ -60,6 +60,13 @@ JST = timezone(timedelta(hours=9))
 STEAM_SLEEP = 1.2
 GEMINI_CALL_SLEEP = 7
 GEMINI_RETRY_WAITS = (15, 30, 60)
+GEMINI_HTTP_TIMEOUT_MS = 45_000
+# Steam content_descriptors: 1/3/4 = sexual content / adult-only.
+ADULT_DESCRIPTOR_IDS = {1, 3, 4}
+ADULT_NAME_RE = re.compile(
+    r"hentai|nsfw|\bporn\b|r-18|18\+|adult only|アダルト|エロゲ",
+    re.I,
+)
 LOG = logging.getLogger("indiegem")
 
 REVIEW_SCORE_JA = {
@@ -184,6 +191,18 @@ def strip_html(value: str | None) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def has_japanese_text(value: str | None) -> bool:
+    return bool(re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", value or ""))
+
+
+def parse_gemini_json(text: str) -> dict[str, Any]:
+    cleaned = (text or "").strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.I)
+        cleaned = re.sub(r"\s*```$", "", cleaned)
+    return json.loads(cleaned)
+
+
 def build_session() -> requests.Session:
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -238,6 +257,39 @@ def load_existing() -> dict[int, dict[str, Any]]:
     return games
 
 
+def _add_search_app_ids(session: requests.Session, add, search_filter: str, count: int = 50) -> None:
+    search = http_get(
+        session,
+        "https://store.steampowered.com/search/results/",
+        params={
+            "query": "",
+            "start": 0,
+            "count": count,
+            "infinite": 1,
+            "filter": search_filter,
+            "category1": 998,
+            "tags": 492,
+            "cc": "jp",
+            "l": "japanese",
+            "hide_filtered_results_explained": 1,
+        },
+    )
+    time.sleep(STEAM_SLEEP)
+    if search is None:
+        return
+    html_blob = ""
+    try:
+        payload = search.json()
+        html_blob = payload.get("results_html") or ""
+    except ValueError:
+        html_blob = search.text
+    found = 0
+    for match in re.findall(r'data-ds-appid="(\d+)"', html_blob):
+        add(int(match))
+        found += 1
+    LOG.info("search filter=%s yielded %s app ids", search_filter, found)
+
+
 def discover_app_ids(session: requests.Session, steam_key: str, extra_ids: list[int], seed_only: bool) -> list[int]:
     ordered: list[int] = []
     seen: set[int] = set()
@@ -252,6 +304,11 @@ def discover_app_ids(session: requests.Session, steam_key: str, extra_ids: list[
     if seed_only:
         return ordered
 
+    # Indie search first so new articles are actual rising/hidden indies,
+    # not AAA hits that happen to have an Indie genre tag.
+    for search_filter in ("popularnew", "globaltopsellers"):
+        _add_search_app_ids(session, add, search_filter)
+
     featured = http_get(
         session,
         "https://store.steampowered.com/api/featuredcategories/",
@@ -261,38 +318,12 @@ def discover_app_ids(session: requests.Session, steam_key: str, extra_ids: list[
     if featured is not None:
         try:
             body = featured.json()
-            for key in ("specials", "top_sellers", "new_releases", "coming_soon"):
+            for key in ("specials", "new_releases"):
                 for item in body.get(key, {}).get("items", []):
                     if int(item.get("type", 0)) == 0:
                         add(int(item["id"]))
         except (ValueError, TypeError, KeyError) as exc:
             LOG.warning("featuredcategories parse failed: %s", exc)
-
-    search = http_get(
-        session,
-        "https://store.steampowered.com/search/results/",
-        params={
-            "query": "",
-            "start": 0,
-            "count": 40,
-            "infinite": 1,
-            "filter": "globaltopsellers",
-            "category1": 998,
-            "tags": 492,
-            "cc": "jp",
-            "l": "japanese",
-        },
-    )
-    time.sleep(STEAM_SLEEP)
-    if search is not None:
-        html_blob = ""
-        try:
-            payload = search.json()
-            html_blob = payload.get("results_html") or ""
-        except ValueError:
-            html_blob = search.text
-        for match in re.findall(r"data-ds-appid=\"(\d+)\"", html_blob):
-            add(int(match))
 
     spy = http_get(session, "https://steamspy.com/api.php", params={"request": "top100in2weeks"})
     time.sleep(STEAM_SLEEP)
@@ -405,6 +436,64 @@ def is_indie(details: dict[str, Any]) -> bool:
             blobs.append(str(row.get("description") or ""))
     text = " ".join(blobs).lower()
     return "indie" in text or "\u30a4\u30f3\u30c7\u30a3\u30fc" in text or "\u30a4\u30f3\u30c7\u30a3" in text
+
+
+def is_coming_soon(details: dict[str, Any]) -> bool:
+    return bool((details.get("release_date") or {}).get("coming_soon"))
+
+
+def recommendation_count(details: dict[str, Any]) -> int:
+    recs = details.get("recommendations") or {}
+    try:
+        return int(recs.get("total") or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+def is_adult_content(details: dict[str, Any]) -> bool:
+    descriptors = (details.get("content_descriptors") or {}).get("ids") or []
+    for raw in descriptors:
+        try:
+            if int(raw) in ADULT_DESCRIPTOR_IDS:
+                return True
+        except (TypeError, ValueError):
+            continue
+    blobs: list[str] = [str(details.get("name") or "")]
+    notes = (details.get("content_descriptors") or {}).get("notes") or ""
+    blobs.append(str(notes))
+    for key in ("genres", "categories"):
+        for row in details.get(key) or []:
+            blobs.append(str(row.get("description") or ""))
+    text = " ".join(blobs)
+    if ADULT_NAME_RE.search(text):
+        return True
+    lowered = text.lower()
+    return "sexual content" in lowered or "nudity" in lowered or "\u30cb\u30e5\u30fc\u30c7\u30a3\u30c6\u30a3" in text
+
+
+def new_title_skip_reason(app_id: int, details: dict[str, Any]) -> str | None:
+    """Return a reason to skip a candidate, or None if it is worth an article."""
+    if not is_game_app(details) and app_id not in SEED_APP_IDS:
+        return f"non-game ({details.get('type')})"
+    if app_id not in SEED_APP_IDS and not is_indie(details):
+        return "non-indie"
+    if is_coming_soon(details):
+        return "coming soon"
+    if is_adult_content(details):
+        return "adult content"
+    recs = recommendation_count(details)
+    min_reviews = env_int("MIN_REVIEWS_NEW", 15)
+    max_reviews = env_int("MAX_REVIEWS_NEW", 80000)
+    # recommendations.total is absent for many small titles; treat 0 as unknown.
+    if 0 < recs < min_reviews:
+        return f"too few reviews ({recs})"
+    if recs > max_reviews:
+        return f"already well-known ({recs} reviews)"
+    if not has_japanese_support(details) and recs == 0:
+        return "no Japanese support and no review signal"
+    if not has_japanese_support(details) and 0 < recs < env_int("MIN_REVIEWS_EN_ONLY", 80):
+        return "no Japanese support and too few reviews"
+    return None
 
 
 def parse_price(details: dict[str, Any]) -> tuple[str, int, bool]:
@@ -567,30 +656,36 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
         "reviews_english": reviews_en[:12],
     }
     models: list[str] = []
-    for name in (model_name, "gemini-3.6-flash", "gemini-2.5-flash"):
+    for name in (model_name, "gemini-3.6-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest"):
         if name and name not in models:
             models.append(name)
 
-    client = genai.Client(api_key=api_key)
+    client = genai.Client(api_key=api_key, http_options={"timeout": GEMINI_HTTP_TIMEOUT_MS})
     last_error = None
     model_idx = 0
+    disable_thinking = True
     for attempt in range(4):
         active_model = models[min(model_idx, len(models) - 1)]
         LOG.info("Gemini wait %ss before request (%s, attempt %s)", GEMINI_CALL_SLEEP, active_model, attempt + 1)
         time.sleep(GEMINI_CALL_SLEEP)
+        config: dict[str, Any] = {
+            "temperature": 0.4,
+            "response_mime_type": "application/json",
+            "response_json_schema": SUMMARY_SCHEMA,
+            "automatic_function_calling": {"disable": True},
+        }
+        if disable_thinking:
+            config["thinking_config"] = {"thinking_budget": 0}
         try:
             response = client.models.generate_content(
                 model=active_model,
                 contents=json.dumps(prompt, ensure_ascii=False),
-                config={
-                    "temperature": 0.4,
-                    "response_mime_type": "application/json",
-                    "response_json_schema": SUMMARY_SCHEMA,
-                    "automatic_function_calling": {"disable": True},
-                },
+                config=config,
             )
             text = getattr(response, "text", None) or ""
-            parsed = json.loads(text)
+            if not text.strip():
+                raise ValueError("empty Gemini response")
+            parsed = parse_gemini_json(text)
             LOG.info("Gemini wait %ss after success", GEMINI_CALL_SLEEP)
             time.sleep(GEMINI_CALL_SLEEP)
             return normalize_summary(parsed)
@@ -599,7 +694,12 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
             kind = classify_gemini_error(exc)
             err_text = str(exc)
             not_found = "404" in err_text or "not found" in err_text.lower()
+            thinking_unsupported = "thinking" in err_text.lower() and disable_thinking
             LOG.warning("Gemini failed attempt %s/4 (%s, %s): %s", attempt + 1, kind, active_model, exc)
+            if thinking_unsupported:
+                disable_thinking = False
+                LOG.info("retrying Gemini without thinking_config")
+                continue
             if not_found and model_idx + 1 < len(models):
                 model_idx += 1
                 LOG.info("switching Gemini model to %s", models[model_idx])
@@ -787,23 +887,39 @@ def pick_new_app_ids(
     limit: int,
 ) -> list[int]:
     selected: list[int] = []
+    inspected = 0
+    max_inspect = env_int("MAX_NEW_INSPECT", 80)
     for app_id in candidates:
         if len(selected) >= limit:
+            break
+        if inspected >= max_inspect:
+            LOG.info("stop scanning new candidates after %s inspections", max_inspect)
             break
         if app_id in existing_ids:
             continue
         details = fetch_app_details(session, app_id)
+        inspected += 1
         if not details:
             continue
-        if not is_game_app(details) and app_id not in SEED_APP_IDS:
-            LOG.info("skip non-game %s (%s)", app_id, details.get("type"))
-            continue
-        if app_id not in SEED_APP_IDS and not is_indie(details):
-            LOG.info("skip non-indie %s", app_id)
+        reason = new_title_skip_reason(app_id, details)
+        if reason:
+            LOG.info("skip %s (%s): %s", app_id, details.get("name"), reason)
             continue
         selected.append(app_id)
         LOG.info("queued new title %s (%s)", app_id, details.get("name"))
     return selected
+
+
+def is_weak_fallback_article(game: dict[str, Any], source: str) -> bool:
+    """Fallback copy that is English store text / no reviews looks broken on the site."""
+    if source != "fallback":
+        return False
+    excerpt = str((game.get("summary") or {}).get("excerpt") or "")
+    if not has_japanese_text(excerpt):
+        return True
+    if int(game.get("total_reviews") or 0) < env_int("MIN_REVIEWS_NEW", 15):
+        return True
+    return False
 
 
 def ingest_new_game(
@@ -817,14 +933,24 @@ def ingest_new_game(
     details = fetch_app_details(session, app_id)
     if not details:
         return None
-    if not is_game_app(details) and app_id not in SEED_APP_IDS:
+    skip_reason = new_title_skip_reason(app_id, details)
+    if skip_reason and app_id not in SEED_APP_IDS:
+        LOG.info("skip ingest %s (%s): %s", app_id, details.get("name"), skip_reason)
         return None
     summary_all, _ = fetch_reviews(session, app_id, "all", limit=1)
     _, reviews_ja = fetch_reviews(session, app_id, "japanese", limit=15)
     _, reviews_en = fetch_reviews(session, app_id, "english", limit=15)
     ccu = fetch_ccu(session, app_id)
     game = assemble_game(app_id, details, summary_all, reviews_ja, ccu, None)
+    live_reviews = int(game.get("total_reviews") or 0)
+    if live_reviews < env_int("MIN_REVIEWS_NEW", 15) and app_id not in SEED_APP_IDS:
+        LOG.info("skip ingest %s (%s): live review count %s", app_id, game["name"], live_reviews)
+        return None
+    if (not game.get("has_japanese")) and live_reviews < env_int("MIN_REVIEWS_EN_ONLY", 80) and app_id not in SEED_APP_IDS:
+        LOG.info("skip ingest %s (%s): English-only with %s reviews", app_id, game["name"], live_reviews)
+        return None
     summary = None
+    source = "fallback"
     allow_gemini = (
         bool(gemini_key)
         and not skip_gemini
@@ -835,6 +961,7 @@ def ingest_new_game(
         try:
             summary = gemini_summarize(game, reviews_ja, reviews_en, model_name, gemini_key)
             if summary:
+                source = "gemini"
                 gemini_state["remaining"] = int(gemini_state["remaining"]) - 1
                 game["summarized_at"] = iso_now()
                 LOG.info("gemini summary for %s; remaining=%s", game["name"], gemini_state["remaining"])
@@ -847,6 +974,10 @@ def ingest_new_game(
         game["summarized_at"] = iso_now()
         LOG.info("fallback summary for %s", game["name"])
     game["summary"] = normalize_summary(summary)
+    game["summary_source"] = source
+    if not skip_gemini and is_weak_fallback_article(game, source):
+        LOG.info("skip publishing weak fallback article for %s", game["name"])
+        return None
     return game
 
 
@@ -906,6 +1037,9 @@ def main() -> int:
 
     LOG.info("refreshing Steam metrics for %s existing titles (no Gemini)", len(existing))
     for app_id, previous in existing.items():
+        if ADULT_NAME_RE.search(str(previous.get("name") or "")):
+            LOG.info("drop adult title %s (%s)", app_id, previous.get("name"))
+            continue
         try:
             game = refresh_existing_game(session, previous)
             collected.append(ensure_added_at(game))
@@ -913,6 +1047,10 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001
             LOG.exception("failed refresh %s: %s", app_id, exc)
             collected.append(ensure_added_at(previous))
+
+    dropped_adult = len(existing) - len(collected)
+    if dropped_adult:
+        LOG.info("removed %s adult titles from catalog", dropped_adult)
 
     collected_ids = {int(g["app_id"]) for g in collected}
     room = max(0, max_games - len(collected))
@@ -925,19 +1063,20 @@ def main() -> int:
         new_ids = [app_id for app_id in only_ids if app_id not in collected_ids][:new_limit]
     else:
         candidates = discover_app_ids(session, steam_key, extra_ids, seed_only=False)
-        new_ids = pick_new_app_ids(session, candidates, collected_ids, new_limit)
+        new_ids = pick_new_app_ids(session, candidates, collected_ids, max(new_limit * 8, 12))
 
     added = 0
     for app_id in new_ids:
-        if len(collected) >= max_games:
+        if added >= new_limit or len(collected) >= max_games:
             break
         try:
             game = ingest_new_game(session, app_id, gemini_key, model_name, args.skip_gemini, gemini_state)
             if not game:
                 continue
             collected.append(game)
+            collected_ids.add(int(game["app_id"]))
             added += 1
-            LOG.info("added %s (%s) ccu=%s pos=%s", game["app_id"], game["name"], game["ccu"], game["positive_percent"])
+            LOG.info("added %s (%s) ccu=%s pos=%s source=%s", game["app_id"], game["name"], game["ccu"], game["positive_percent"], game.get("summary_source"))
         except Exception as exc:  # noqa: BLE001
             LOG.exception("failed new app %s: %s", app_id, exc)
             continue

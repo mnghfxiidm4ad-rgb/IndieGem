@@ -29,7 +29,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -61,6 +61,9 @@ jobs:
           MAX_GAMES: ${{ github.event.inputs.max_games || '100' }}
           MAX_NEW_GAMES: ${{ github.event.inputs.max_new || '3' }}
           MAX_GEMINI_PER_RUN: ${{ github.event.inputs.max_new || '3' }}
+          MIN_REVIEWS_NEW: "15"
+          MAX_REVIEWS_NEW: "80000"
+          MIN_REVIEWS_EN_ONLY: "80"
           SITE_BASE_URL: ${{ steps.site.outputs.url }}
         run: |
           ARGS=()
