@@ -172,6 +172,19 @@ a { color: inherit; }
 .post-cover { margin: 20px 0 28px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
 .post-cover img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
 .post h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 0 0 14px; }
+.post h1 .review-kicker {
+  display: block;
+  font-family: var(--font-sans, inherit);
+  font-size: 0.42em;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.audience {
+  color: var(--mint);
+  line-height: 1.7;
+  margin: 0 0 22px;
+}
 .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .pill {
   border: 1px solid var(--line);
@@ -191,6 +204,7 @@ a { color: inherit; }
   margin: 0 0 18px;
 }
 .panel h2 { margin: 0 0 12px; font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
+.panel h3 { margin: 16px 0 8px; font-size: 0.95rem; color: var(--text); }
 .summary-list { margin: 0; padding-left: 1.1rem; }
 .summary-list li { margin: 0 0 8px; line-height: 1.7; }
 .lead { color: #d5deea; line-height: 1.8; }

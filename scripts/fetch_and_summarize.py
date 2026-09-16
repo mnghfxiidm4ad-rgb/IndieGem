@@ -97,6 +97,12 @@ SUMMARY_SCHEMA: dict[str, Any] = {
         "caveats": {"type": "array", "items": {"type": "string"}},
         "specs_note": {"type": "string"},
         "language_note": {"type": "string"},
+        "headline": {"type": "string"},
+        "target_audience": {"type": "string"},
+        "core_mechanics": {"type": "string"},
+        "community_reaction": {"type": "string"},
+        "verdict": {"type": "string"},
+        "article_markdown": {"type": "string"},
     },
     "required": [
         "excerpt",
@@ -107,8 +113,78 @@ SUMMARY_SCHEMA: dict[str, Any] = {
         "caveats",
         "specs_note",
         "language_note",
+        "headline",
+        "target_audience",
+        "core_mechanics",
+        "community_reaction",
+        "verdict",
+        "article_markdown",
     ],
 }
+
+GENERATION_CONFIG: dict[str, Any] = {
+    "temperature": 0.5,
+    "max_output_tokens": 3000,
+}
+
+SYSTEM_INSTRUCTION = """あなたはインディーゲームの構造・システム設計に精通したゲームレビュアー・キュレーターです。「IndieGem」の専属ライターとして、Steamの隠れた名作や急上昇タイトルを紹介する日本語記事を執筆します。
+
+### 編集ガイドライン:
+1. コアループと手触りの言語化: ストアのあらすじをなぞるだけでなく、「何が面白いのか」「操作感やリソース管理のジレンマ」「コアとなるゲームメカニクス」を具体的に解説してください。
+2. 読者ターゲットの明確化: 「誰に刺さるゲームなのか（例: デッキ構築型好き、高難度アクション好き）」を冒頭から提示してください。
+3. トーン＆マナー: 落ち着きつつもゲーム愛が伝わる、論理的で明瞭な「です・ます調」。安易な誇大広告表現（「神ゲー確定」「絶対買うべき」等）は避け、長所と人を選ぶポイント（難易度、UI、言語の壁など）を誠実に併記してください。
+4. フォーマット: Markdown形式。H2/H3タグ、箇条書きを適切に使い、短時間で要点が把握できる可読性を重視してください。
+
+### 事実の扱い:
+- 開発元・パブリッシャー・価格帯・日本語対応・レビュー評価・リリース日は、ユーザーメッセージの [VERIFIED STEAM METADATA] のみを正とします。
+- メタデータにないDLC、開発秘話、パッチ内容、受賞歴、架空のエピソードは推測も禁止です。
+- プレイヤーレビューは傾向の要約に使い、一件の感想を全体の事実として断定しません。
+"""
+
+FACT_RULES = """【ファクトに関する厳格なルール】
+- 開発元、パブリッシャー、価格帯、日本語対応状況などは、必ず上記メタデータに厳密に従ってください。
+- メタデータにない情報（架空の開発エピソード、実在しないDLC情報など）を推測・捏造することは禁止します。
+- 日本語非対応の場合、英語や有志翻訳の敷居（言語依存度）について客観的に言及してください。
+- 同時接続数・レビュー件数・好評率を書く場合も、メタデータにある数値以外は使わないでください。
+- プレイヤーレビューは「評価の傾向」として要約し、一件の感想を全体の事実にしないでください。
+"""
+
+OUTPUT_TEMPLATE_INSTRUCTION = """【出力記事テンプレート】
+article_markdown は次の Markdown 構成で書いてください（全体で約1,000〜1,500文字）。
+
+# 【レビュー】[ゲームタイトル]：[ゲームの本質・魅力を表すキャッチコピー]
+
+## 1. 3行でわかる本作の魅力
+忙しい人向けの要点を箇条書き3点。誰に刺さるかが分かるようにする。
+
+## 2. ゲームシステムのコア
+基本ルール、コアループ、操作感やリソース管理のジレンマ、独自メカニクスを具体的に解説する。
+
+## 3. ここが面白い＆人を選ぶポイント
+長所と留意点（難易度、UI、言語の壁など）を両論併記する。H3で「面白いところ」「人を選ぶところ」を分ける。
+
+## 4. プレイヤーの評価とコミュニティの反応
+Steamレビュー傾向と、実際に評価されている点・分かれている点を要約する。
+
+## 5. 総評・こんな人におすすめ＆購入ガイド
+おすすめのプレイヤー像、日本語対応状況（メタデータ準拠）、ストアリンクへの誘導。
+
+あわせて JSON の各フィールドへ同じ内容を分解して格納すること。
+- headline: H1のキャッチコピー部分のみ（【レビュー】とゲームタイトルは含めない）
+- target_audience: 刺さるプレイヤー像を1〜2文
+- three_line_summary: セクション1の3点
+- core_mechanics: セクション2の本文（プレーンテキスト）
+- swamp_points: 面白い点 2〜3個
+- caveats: 人を選ぶ点 1〜2個
+- community_reaction: セクション4の本文
+- verdict: セクション5の本文
+- excerpt: カード用の70〜90字の日本語ティーザー（誇大表現なし）
+- why_now: いま読む価値・注目理由を1文（メタデータのレビュー/同接に基づく）
+- buzz_story: メカニクスと手触りの要約1文
+- specs_note: 動作環境はメタデータとストア要件の範囲でのみ
+- language_note: 日本語対応はメタデータに厳密に従う
+個別フィールドは Markdown 記法を使わず、プレーンな日本語で書く。Markdown は article_markdown のみ。
+"""
 
 HEADERS = {
     "User-Agent": (
@@ -510,6 +586,233 @@ def has_japanese_support(details: dict[str, Any]) -> bool:
     return "japanese" in langs or "\u65e5\u672c\u8a9e" in langs
 
 
+def join_names(values: Any, fallback: str = "不明") -> str:
+    if isinstance(values, str) and values.strip():
+        return values.strip()
+    if isinstance(values, (list, tuple)):
+        names = [str(item).strip() for item in values if str(item).strip()]
+        if names:
+            return " / ".join(names)
+    return fallback
+
+
+def extract_tag_list(details: dict[str, Any]) -> list[str]:
+    tags: list[str] = []
+    seen: set[str] = set()
+    for key in ("genres", "categories"):
+        for row in details.get(key) or []:
+            desc = str(row.get("description") or "").strip()
+            if not desc:
+                continue
+            lowered = desc.lower()
+            if lowered in seen:
+                continue
+            seen.add(lowered)
+            tags.append(desc)
+    return tags[:16]
+
+
+def describe_japanese_support(supported_languages: str) -> str:
+    text = strip_html(supported_languages or "")
+    if not text:
+        return "不明（ストアの対応言語欄が空）"
+    token = ""
+    for part in re.split(r"[,、]", text):
+        if "日本語" in part or re.search(r"\bjapanese\b", part, flags=re.I):
+            token = part.strip()
+            break
+    if not token:
+        return "非対応（インターフェース / 吹き替え / 字幕いずれも公式非対応）"
+    has_audio = "*" in token
+    dub = "対応" if has_audio else "非対応"
+    return f"インターフェース: 対応 / 吹き替え: {dub} / 字幕: 対応"
+
+
+def format_review_summary(game: dict[str, Any]) -> str:
+    desc = str(game.get("review_score_desc") or "N/A")
+    percent = game.get("positive_percent")
+    total = int(game.get("total_reviews") or 0)
+    if percent not in (None, ""):
+        if total:
+            return f"{desc} {percent}%（{total:,}件）"
+        return f"{desc} {percent}%"
+    return desc
+
+
+def format_price_band(game: dict[str, Any]) -> str:
+    if game.get("is_free"):
+        return "無料"
+    price = str(game.get("price_formatted") or "不明")
+    discount = int(game.get("discount_percent") or 0)
+    if discount > 0:
+        return f"{price}（{discount}% OFF）"
+    return price
+
+
+def build_verified_metadata(game: dict[str, Any]) -> str:
+    tags = game.get("tags") or []
+    if isinstance(tags, list):
+        tags_list = ", ".join(str(tag) for tag in tags if str(tag).strip()) or "不明"
+    else:
+        tags_list = str(tags).strip() or "不明"
+    japanese_support = game.get("japanese_support") or describe_japanese_support(
+        str(game.get("supported_languages") or "")
+    )
+    lines = [
+        "[VERIFIED STEAM METADATA]",
+        f"- タイトル: {game.get('name') or '不明'}",
+        f"- 開発元 / パブリッシャー: {join_names(game.get('developers'))} / {join_names(game.get('publishers'))}",
+        f"- リリース日: {game.get('release_date') or '不明'}",
+        f"- レビュー状況: {format_review_summary(game)}",
+        f"- 主なタグ / ジャンル: {tags_list}",
+        f"- 日本語対応: {japanese_support}",
+        f"- 価格帯: {format_price_band(game)}",
+        f"- ストアURL: {game.get('steam_url') or '不明'}",
+    ]
+    ccu = game.get("ccu")
+    if isinstance(ccu, int):
+        lines.append(f"- 同時接続（取得時点）: {ccu:,}")
+    delta = game.get("ccu_delta")
+    if isinstance(delta, int) and delta != 0:
+        lines.append(f"- 同接差分: {delta:+,}")
+    return "\n".join(lines)
+
+
+def format_reviews_for_prompt(reviews: list[dict[str, Any]], limit: int = 10) -> str:
+    if not reviews:
+        return "（該当レビューなし）"
+    lines: list[str] = []
+    for index, item in enumerate(reviews[:limit], 1):
+        vote = "好評" if item.get("voted_up") else "不評"
+        hours = item.get("playtime_hours")
+        hours_s = f"{hours}時間" if hours not in (None, "") else "プレイ時間不明"
+        text = str(item.get("text") or "").strip()
+        if len(text) > 500:
+            text = text[:500] + "…"
+        lines.append(f"{index}. [{vote} / {hours_s}] {text}")
+    return "\n".join(lines)
+
+
+def build_summarize_prompt(
+    game: dict[str, Any],
+    reviews_ja: list[dict[str, Any]],
+    reviews_en: list[dict[str, Any]],
+) -> str:
+    desc = str(game.get("short_description") or "").strip() or "（ストア短文なし）"
+    req = str(game.get("pc_requirements") or "").strip() or "（記載なし）"
+    return f"""IndieGemの日本語レビュー記事を執筆してください。ストア説明の翻訳ではなく、「ゲームメカニクスのコア」「プレイフィールの手触り」「プレイヤーのリアルな評価」「どんなゲーマーに刺さるか」を、客観的かつ熱量のある日本語で書いてください。
+
+---
+{build_verified_metadata(game)}
+
+{FACT_RULES}
+
+{OUTPUT_TEMPLATE_INSTRUCTION}
+
+---
+[STORE SHORT DESCRIPTION]
+{desc}
+
+[PC REQUIREMENTS (VERIFIED SNIPPET)]
+{req}
+
+[PLAYER REVIEWS — JAPANESE]
+{format_reviews_for_prompt(reviews_ja, 10)}
+
+[PLAYER REVIEWS — ENGLISH]
+{format_reviews_for_prompt(reviews_en, 10)}
+"""
+
+
+def build_generation_config(disable_thinking: bool) -> dict[str, Any]:
+    config: dict[str, Any] = {
+        **GENERATION_CONFIG,
+        "system_instruction": SYSTEM_INSTRUCTION,
+        "response_mime_type": "application/json",
+        "response_json_schema": SUMMARY_SCHEMA,
+        "automatic_function_calling": {"disable": True},
+    }
+    if disable_thinking:
+        config["thinking_config"] = {"thinking_budget": 0}
+    return config
+
+
+def _clean_text_list(raw: Any, limit: int) -> list[str]:
+    if isinstance(raw, str) and raw.strip():
+        items = [raw.strip()]
+    elif isinstance(raw, (list, tuple)):
+        items = [str(item).strip() for item in raw if str(item).strip()]
+    else:
+        items = []
+    return items[:limit]
+
+
+def assemble_article_markdown(game: dict[str, Any], summary: dict[str, Any]) -> str:
+    title = str(game.get("name") or "本作")
+    headline = str(summary.get("headline") or "").strip() or "メカニクスと手触りで選ぶ一作"
+    three = [str(item).strip() for item in (summary.get("three_line_summary") or []) if str(item).strip()]
+    swamp = [str(item).strip() for item in (summary.get("swamp_points") or []) if str(item).strip()]
+    caveats = [str(item).strip() for item in (summary.get("caveats") or []) if str(item).strip()]
+    core = str(summary.get("core_mechanics") or summary.get("buzz_story") or "").strip()
+    community = str(summary.get("community_reaction") or summary.get("why_now") or "").strip()
+    verdict = str(summary.get("verdict") or "").strip()
+    audience = str(summary.get("target_audience") or "").strip()
+    language = str(summary.get("language_note") or "").strip()
+    url = str(game.get("steam_url") or "").strip()
+
+    def bullets(items: list[str]) -> str:
+        return "\n".join(f"- {item}" for item in items) if items else "- 情報を整理中です。"
+
+    parts = [f"# 【レビュー】{title}：{headline}", ""]
+    if audience:
+        parts.extend([f"**こんな人に刺さります:** {audience}", ""])
+    parts.extend(
+        [
+            "## 1. 3行でわかる本作の魅力",
+            bullets(three[:3]),
+            "",
+            "## 2. ゲームシステムのコア",
+            core or "公開情報の範囲で、遊びの骨格を確認してください。",
+            "",
+            "## 3. ここが面白い＆人を選ぶポイント",
+            "### 面白いところ",
+            bullets(swamp),
+            "",
+            "### 人を選ぶところ",
+            bullets(caveats),
+            "",
+            "## 4. プレイヤーの評価とコミュニティの反応",
+            community or "Steamレビューの傾向を確認してください。",
+            "",
+            "## 5. 総評・こんな人におすすめ＆購入ガイド",
+            verdict or language or "購入前に公式ストアの最新情報を確認してください。",
+        ]
+    )
+    if language and language not in (verdict or ""):
+        parts.extend(["", language])
+    if url:
+        parts.extend(["", f"ストアページ: {url}"])
+    return "\n".join(parts).strip()
+
+
+def apply_fact_guard(game: dict[str, Any], summary: dict[str, Any]) -> dict[str, Any]:
+    japanese_support = str(
+        game.get("japanese_support")
+        or describe_japanese_support(str(game.get("supported_languages") or ""))
+    )
+    if not game.get("has_japanese"):
+        summary["language_note"] = (
+            f"公式日本語は非対応です（{japanese_support}）。"
+            "英語UIの読解や有志翻訳の要否は、テキスト量・メニュー依存度・ボイス依存度を踏まえて判断してください。"
+        )
+    elif not str(summary.get("language_note") or "").strip():
+        summary["language_note"] = f"日本語対応状況は次のとおりです。{japanese_support}"
+    markdown = str(summary.get("article_markdown") or "").strip()
+    if len(markdown) < 400:
+        summary["article_markdown"] = assemble_article_markdown(game, summary)
+    return summary
+
+
 def map_review_desc(raw: str, positive: float) -> str:
     if raw in REVIEW_SCORE_JA:
         return REVIEW_SCORE_JA[raw]
@@ -524,22 +827,39 @@ def map_review_desc(raw: str, positive: float) -> str:
     return raw or "N/A"
 
 
-def normalize_summary(raw: dict[str, Any]) -> dict[str, Any]:
-    three = [str(x).strip() for x in (raw.get("three_line_summary") or []) if str(x).strip()]
-    swamp = [str(x).strip() for x in (raw.get("swamp_points") or []) if str(x).strip()]
-    caveats = [str(x).strip() for x in (raw.get("caveats") or []) if str(x).strip()]
+def normalize_summary(
+    raw: dict[str, Any],
+    game: dict[str, Any] | None = None,
+    *,
+    enforce_facts: bool = False,
+) -> dict[str, Any]:
+    three = _clean_text_list(raw.get("three_line_summary"), 3)
+    swamp = _clean_text_list(raw.get("swamp_points"), 3)
+    caveats = _clean_text_list(raw.get("caveats"), 2)
+    excerpt = str(raw.get("excerpt") or "").strip()
     while len(three) < 3:
-        three.append(str(raw.get("excerpt") or "\u8981\u7d04\u3092\u53d6\u5f97\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u3002"))
-    return {
-        "excerpt": str(raw.get("excerpt") or "")[:180],
+        three.append(excerpt or "要約を取得できませんでした。")
+    headline = str(raw.get("headline") or "").strip()
+    headline = re.sub(r"^【レビュー】[^：:]*[：:]", "", headline).strip()
+    out = {
+        "excerpt": excerpt[:180],
         "why_now": str(raw.get("why_now") or three[0]),
-        "buzz_story": str(raw.get("buzz_story") or three[1]),
+        "buzz_story": str(raw.get("buzz_story") or (three[1] if len(three) > 1 else three[0])),
         "three_line_summary": three[:3],
-        "swamp_points": swamp[:3] or ["\u73fe\u5728\u306e\u30ec\u30d3\u30e5\u30fc\u304b\u3089\u6e1b\u70b9\u3092\u62bd\u51fa\u4e2d\u3067\u3059\u3002"],
-        "caveats": caveats[:2] or ["\u8cbb\u3084\u3059\u6027\u306f\u30d7\u30ec\u30a4\u30b9\u30bf\u30a4\u30eb\u306b\u3088\u3063\u3066\u5272\u308c\u307e\u3059\u3002"],
-        "specs_note": str(raw.get("specs_note") or ""),
-        "language_note": str(raw.get("language_note") or ""),
+        "swamp_points": swamp[:3] or ["現在のレビューから沼点を抽出中です。"],
+        "caveats": caveats[:2] or ["費やす時間や好みはプレイスタイルによって割れます。"],
+        "specs_note": str(raw.get("specs_note") or "").strip(),
+        "language_note": str(raw.get("language_note") or "").strip(),
+        "headline": headline,
+        "target_audience": str(raw.get("target_audience") or "").strip(),
+        "core_mechanics": str(raw.get("core_mechanics") or "").strip(),
+        "community_reaction": str(raw.get("community_reaction") or "").strip(),
+        "verdict": str(raw.get("verdict") or "").strip(),
+        "article_markdown": str(raw.get("article_markdown") or "").strip(),
     }
+    if game and enforce_facts:
+        return apply_fact_guard(game, out)
+    return out
 
 
 def fallback_summary(game: dict[str, Any], reviews: list[dict[str, Any]]) -> dict[str, Any]:
@@ -548,55 +868,82 @@ def fallback_summary(game: dict[str, Any], reviews: list[dict[str, Any]]) -> dic
     ccu = game["ccu"]
     disc = game["discount_percent"]
     desc = game.get("short_description") or ""
+    tags = game.get("tags") or []
+    tag_hint = "、".join(str(tag) for tag in tags[:3] if str(tag).strip())
     why = []
     if disc >= 15:
         why.append(f"{disc}% OFF")
     if ccu >= 200:
-        why.append(f"CCU {ccu:,}")
+        why.append(f"同時接続 {ccu:,}")
     if pos:
-        why.append(f"{pos}% positive")
+        why.append(f"好評率 {pos}%")
+    review_s = format_review_summary(game)
     why_now = (
-        f"{name} "
-        + "\u306f\u4eca\u3001"
-        + (" / ".join(why) if why else "\u30b9\u30c8\u30a2\u3068\u30b3\u30df\u30e5\u30cb\u30c6\u30a3\u3067\u63d0\u5531\u3055\u308c\u3066\u3044\u307e\u3059")
-        + "\u3002"
+        f"{name} は今、"
+        + (" / ".join(why) if why else "ストアとコミュニティで提起されています")
+        + "。"
     )
     buzz = desc[:160] or (
-        "Steam\u30ec\u30d3\u30e5\u30fc\u3068\u516c\u958b\u30e1\u30bf\u30c7\u30fc\u30bf\u304b\u3089\u3001"
-        "\u73fe\u5728\u306e\u8a71\u984c\u6027\u3092\u6574\u7406\u3057\u3066\u3044\u307e\u3059\u3002"
+        "Steamレビューと公開メタデータから、現在の話題性を整理しています。"
     )
     liked = [r["text"][:80] for r in reviews if r.get("voted_up")][:2]
     swamp = liked or [
-        "\u30b7\u30e7\u30fc\u30c8\u30bb\u30c3\u30b7\u30e7\u30f3\u3067\u3082\u6df1\u3044\u3084\u308a\u8fbc\u307f\u304c\u3042\u308b\u8a2d\u8a08\u3002",
-        "\u30a4\u30f3\u30c7\u30a3\u30fc\u306a\u3089\u3067\u306f\u306e\u500b\u6027\u304c\u5f37\u3044\u3002",
+        "ショートセッションでも深いやり込みがある設計。",
+        "インディーならではの個性が強い。",
     ]
     caveats = [
-        "\u73fe\u5728\u306e\u30d0\u30e9\u30f3\u30b9\u3084\u96e3\u6613\u5ea6\u306f\u66f4\u65b0\u3067\u5909\u308f\u308b\u53ef\u80fd\u6027\u304c\u3042\u308a\u307e\u3059\u3002"
+        "現在のバランスや難易度は更新で変わる可能性があります。"
     ]
+    japanese_support = str(
+        game.get("japanese_support")
+        or describe_japanese_support(str(game.get("supported_languages") or ""))
+    )
     if not game.get("has_japanese"):
-        caveats.append("\u65e5\u672c\u8a9eUI\u304c\u516c\u5f0f\u306b\u78ba\u8a8d\u3067\u304d\u306a\u3044\u305f\u3081\u3001\u8a00\u8a9e\u4f9d\u5b58\u5ea6\u306b\u6ce8\u610f\u3002")
-    specs = game.get("pc_requirements") or "\u516c\u5f0f\u30b9\u30c8\u30a2\u306e\u6700\u4f4e\u52d5\u4f5c\u74b0\u5883\u3092\u78ba\u8a8d\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
-    language = (
-        "\u65e5\u672c\u8a9e\u5bfe\u5fdc\u3042\u308a\u3002"
-        if game.get("has_japanese")
-        else "\u65e5\u672c\u8a9e\u5bfe\u5fdc\u306f\u4e0d\u660e\u307e\u305f\u306f\u975e\u5bfe\u5fdc\u3002\u82f1\u8a9e\u30ec\u30d3\u30e5\u30fc\u3092\u542b\u3081\u3066\u8981\u7d04\u3057\u3066\u3044\u307e\u3059\u3002"
+        caveats.append("公式日本語UIが確認できないため、言語依存度に注意。")
+    specs = game.get("pc_requirements") or "公式ストアの最低動作環境を確認してください。"
+    if game.get("has_japanese"):
+        language = f"日本語対応あり。{japanese_support}"
+    else:
+        language = (
+            f"公式日本語は非対応です（{japanese_support}）。"
+            "英語や有志翻訳の敷居は、テキスト量とUI依存度で判断してください。"
+        )
+    audience = (
+        f"{tag_hint}が好きなPCゲーマー"
+        if tag_hint
+        else "インディーの個性的なメカニクスを探すPCゲーマー"
     )
-    return normalize_summary(
-        {
-            "excerpt": (desc[:90] or why_now) ,
-            "why_now": why_now,
-            "buzz_story": buzz,
-            "three_line_summary": [
-                why_now,
-                buzz[:120],
-                f"{name} / {game.get('review_score_desc')} {pos}%",
-            ],
-            "swamp_points": swamp[:3],
-            "caveats": caveats[:2],
-            "specs_note": specs[:240],
-            "language_note": language,
-        }
+    core = desc[:400] or "ストア公開情報の範囲では、遊びの骨格は公式ページの説明を参照してください。"
+    community = (
+        f"Steamのレビュー状況は {review_s} です。"
+        "個別の感想ではなく、評価の傾向としてご覧ください。"
     )
+    verdict = (
+        f"{name} は、{audience} に向く一作です。"
+        f"価格帯は {format_price_band(game)}。{language}"
+        "購入前にストアページで最新情報を確認してください。"
+    )
+    payload = {
+        "excerpt": (desc[:90] or why_now),
+        "why_now": why_now,
+        "buzz_story": buzz,
+        "three_line_summary": [
+            why_now,
+            buzz[:120],
+            f"{name} / {game.get('review_score_desc')} {pos}%",
+        ],
+        "swamp_points": swamp[:3],
+        "caveats": caveats[:2],
+        "specs_note": str(specs)[:240],
+        "language_note": language,
+        "headline": "公開データから見える遊びの核",
+        "target_audience": audience,
+        "core_mechanics": core,
+        "community_reaction": community,
+        "verdict": verdict,
+    }
+    payload["article_markdown"] = assemble_article_markdown(game, payload)
+    return normalize_summary(payload, game, enforce_facts=True)
 
 
 def should_resummarize(existing: dict[str, Any] | None, ttl_days: int, total_reviews: int) -> bool:
@@ -626,35 +973,7 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
         LOG.warning("google-genai is not installed")
         return None
 
-    prompt = {
-        "role": "IndieGem editor",
-        "instruction": (
-            "Summarize this indie Steam game for a Japanese editorial site. "
-            "Write EVERY field in natural Japanese. "
-            "three_line_summary must contain exactly 3 sentences: "
-            "(1) why it is buzzing now, (2) how the buzz started, (3) what the game feels like. "
-            "swamp_points: 2-3 addiction hooks. caveats: 1-2 caveats or mixed opinions. "
-            "excerpt: about 70-90 Japanese characters for a card teaser. "
-            "Do not invent patch notes. Stay faithful to reviews and metadata."
-        ),
-        "game": {
-            "name": game["name"],
-            "developers": game["developers"],
-            "price": game["price_formatted"],
-            "discount_percent": game["discount_percent"],
-            "ccu": game["ccu"],
-            "ccu_delta": game["ccu_delta"],
-            "positive_percent": game["positive_percent"],
-            "review_score_desc": game["review_score_desc"],
-            "short_description": game.get("short_description"),
-            "pc_requirements": game.get("pc_requirements"),
-            "supported_languages": game.get("supported_languages"),
-            "has_japanese": game.get("has_japanese"),
-            "release_date": game.get("release_date"),
-        },
-        "reviews_japanese": reviews_ja[:12],
-        "reviews_english": reviews_en[:12],
-    }
+    prompt = build_summarize_prompt(game, reviews_ja, reviews_en)
     models: list[str] = []
     for name in (model_name, "gemini-3.6-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest"):
         if name and name not in models:
@@ -668,18 +987,11 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
         active_model = models[min(model_idx, len(models) - 1)]
         LOG.info("Gemini wait %ss before request (%s, attempt %s)", GEMINI_CALL_SLEEP, active_model, attempt + 1)
         time.sleep(GEMINI_CALL_SLEEP)
-        config: dict[str, Any] = {
-            "temperature": 0.4,
-            "response_mime_type": "application/json",
-            "response_json_schema": SUMMARY_SCHEMA,
-            "automatic_function_calling": {"disable": True},
-        }
-        if disable_thinking:
-            config["thinking_config"] = {"thinking_budget": 0}
+        config = build_generation_config(disable_thinking)
         try:
             response = client.models.generate_content(
                 model=active_model,
-                contents=json.dumps(prompt, ensure_ascii=False),
+                contents=prompt,
                 config=config,
             )
             text = getattr(response, "text", None) or ""
@@ -688,7 +1000,7 @@ def gemini_summarize(game: dict[str, Any], reviews_ja: list[dict[str, Any]], rev
             parsed = parse_gemini_json(text)
             LOG.info("Gemini wait %ss after success", GEMINI_CALL_SLEEP)
             time.sleep(GEMINI_CALL_SLEEP)
-            return normalize_summary(parsed)
+            return normalize_summary(parsed, game, enforce_facts=True)
         except Exception as exc:  # noqa: BLE001 - API surface varies by SDK version
             last_error = exc
             kind = classify_gemini_error(exc)
@@ -730,6 +1042,7 @@ def assemble_game(
     developers = list(details.get("developers") or [])
     publishers = list(details.get("publishers") or [])
     langs = strip_html(details.get("supported_languages") or "")
+    tags = extract_tag_list(details)
     req = strip_html((details.get("pc_requirements") or {}).get("minimum") if isinstance(details.get("pc_requirements"), dict) else "")
     prev_ccu = int((previous or {}).get("ccu") or 0)
     ccu_delta = (ccu - prev_ccu) if previous else 0
@@ -740,6 +1053,7 @@ def assemble_game(
         "name": details.get("name") or f"App {app_id}",
         "developers": developers,
         "publishers": publishers,
+        "tags": tags,
         "header_image": header,
         "short_description": strip_html(details.get("short_description") or ""),
         "price_formatted": "\u7121\u6599" if is_free else price_formatted,
@@ -757,6 +1071,7 @@ def assemble_game(
         "coming_soon": bool((details.get("release_date") or {}).get("coming_soon")),
         "supported_languages": langs,
         "has_japanese": has_japanese_support(details),
+        "japanese_support": describe_japanese_support(langs),
         "pc_requirements": req[:400],
         "steam_url": f"https://store.steampowered.com/app/{app_id}/?utm_source=indiegem",
         "updated_at": iso_now(),
@@ -810,11 +1125,17 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
 
     post_tpl = env.get_template("post.html")
     for game in ranked:
+        if not str(game.get("japanese_support") or "").strip():
+            game["japanese_support"] = describe_japanese_support(
+                str(game.get("supported_languages") or "")
+            )
         canonical = f"{site_base_url}/posts/{game['app_id']}.html"
+        headline = str((game.get("summary") or {}).get("headline") or "").strip()
+        review_name = f"【レビュー】{game['name']}：{headline}" if headline else f"{game['name']} | IndieGem"
         json_ld = {
             "@context": "https://schema.org",
             "@type": "Review",
-            "name": f"{game['name']} | IndieGem",
+            "name": review_name,
             "inLanguage": "ja",
             "dateModified": game["updated_at"],
             "reviewBody": game["summary"]["excerpt"],
@@ -873,7 +1194,11 @@ def refresh_existing_game(session: requests.Session, previous: dict[str, Any]) -
     summary_all, _ = fetch_reviews(session, app_id, "all", limit=1)
     ccu = fetch_ccu(session, app_id)
     game = assemble_game(app_id, details, summary_all, [], ccu, previous)
-    game["summary"] = normalize_summary(previous.get("summary") or fallback_summary(game, []))
+    previous_summary = previous.get("summary") or {}
+    if previous_summary.get("excerpt"):
+        game["summary"] = normalize_summary(previous_summary, game, enforce_facts=False)
+    else:
+        game["summary"] = fallback_summary(game, [])
     game["summarized_at"] = previous.get("summarized_at") or previous.get("updated_at") or iso_now()
     game["added_at"] = previous.get("added_at") or previous.get("summarized_at") or previous.get("updated_at") or iso_now()
     game["added_at_jst"] = previous.get("added_at_jst") or format_jst()
@@ -973,7 +1298,7 @@ def ingest_new_game(
         summary = fallback_summary(game, reviews_ja + reviews_en)
         game["summarized_at"] = iso_now()
         LOG.info("fallback summary for %s", game["name"])
-    game["summary"] = normalize_summary(summary)
+    game["summary"] = normalize_summary(summary, game, enforce_facts=True)
     game["summary_source"] = source
     if not skip_gemini and is_weak_fallback_article(game, source):
         LOG.info("skip publishing weak fallback article for %s", game["name"])
@@ -996,6 +1321,11 @@ def trim_catalog(games: list[dict[str, Any]], max_games: int) -> list[dict[str, 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build the IndieGem static catalog")
     parser.add_argument("--seed-only", action="store_true", help="Refresh existing titles only; do not add new games")
+    parser.add_argument(
+        "--render-only",
+        action="store_true",
+        help="Rebuild HTML from data/games.json without fetching Steam or Gemini",
+    )
     parser.add_argument("--skip-gemini", action="store_true", help="Skip Gemini and use fallback summaries")
     parser.add_argument("--max-games", type=int, default=None, help="Catalog cap (default MAX_GAMES or 100)")
     parser.add_argument(
@@ -1030,6 +1360,17 @@ def main() -> int:
     site_base_url = os.getenv("SITE_BASE_URL", "").strip().rstrip("/") or "https://example.github.io/IndieGem"
     extra_ids = [int(x) for x in args.app_ids.split(",") if x.strip().isdigit()]
     only_ids = [int(x) for x in args.only_app_ids.split(",") if x.strip().isdigit()]
+
+    if args.render_only:
+        existing = load_existing()
+        collected = [ensure_added_at(game) for game in existing.values()]
+        if not collected:
+            LOG.error("no games in catalog")
+            return 1
+        collected = trim_catalog(collected, max_games)
+        render_site(collected, site_base_url)
+        LOG.info("render-only: wrote %s titles from %s", len(collected), DATA_PATH)
+        return 0
 
     session = build_session()
     existing = load_existing()

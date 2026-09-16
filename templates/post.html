@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ game.name }} | IndieGem</title>
+  <title>{% if game.summary.headline %}【レビュー】{{ game.name }}：{{ game.summary.headline }}{% else %}{{ game.name }} | IndieGem{% endif %}</title>
   <meta name="description" content="{{ game.summary.excerpt }}">
   <link rel="canonical" href="{{ canonical_url }}">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ game.name }} | IndieGem">
+  <meta property="og:title" content="{% if game.summary.headline %}【レビュー】{{ game.name }}：{{ game.summary.headline }}{% else %}{{ game.name }} | IndieGem{% endif %}">
   <meta property="og:description" content="{{ game.summary.excerpt }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:image" content="{{ game.header_image }}">
@@ -49,19 +49,50 @@
       <img src="{{ game.header_image }}" alt="{{ game.name }}">
     </div>
 
-    <h1>{{ game.name }}</h1>
+    <h1>
+      {% if game.summary.headline %}
+      <span class="review-kicker">【レビュー】{{ game.name }}</span>
+      {{ game.summary.headline }}
+      {% else %}
+      {{ game.name }}
+      {% endif %}
+    </h1>
     <div class="meta-row">
       <span class="pill">{{ game.developers|join(', ') or '開発元不明' }}</span>
+      {% if game.publishers and game.publishers != game.developers %}
+      <span class="pill">{{ game.publishers|join(', ') }}</span>
+      {% endif %}
       <span class="pill">{{ game.price_formatted }}{% if game.discount_percent > 0 %}（{{ game.discount_percent }}% OFF）{% endif %}</span>
       <span class="pill good">{{ game.review_score_desc }} {{ game.positive_percent }}%</span>
       <span class="pill">同接 {{ '{:,}'.format(game.ccu) }}{% if game.ccu_delta > 0 %}（+{{ '{:,}'.format(game.ccu_delta) }}）{% endif %}</span>
+      {% if game.japanese_support %}
+      <span class="pill">日本語 {{ game.japanese_support }}</span>
+      {% endif %}
     </div>
+
+    {% if game.summary.target_audience %}
+    <p class="audience"><strong>こんな人に刺さります：</strong>{{ game.summary.target_audience }}</p>
+    {% endif %}
 
     <aside class="ad-slot" aria-label="広告枠">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2075840815269276"
            crossorigin="anonymous"></script>
     </aside>
 
+    {% if game.summary.core_mechanics %}
+    <section class="panel">
+      <h2>1. 3行でわかる本作の魅力</h2>
+      <ol class="summary-list">
+        {% for line in game.summary.three_line_summary %}
+        <li>{{ line }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+    <section class="panel">
+      <h2>2. ゲームシステムのコア</h2>
+      <p class="lead">{{ game.summary.core_mechanics }}</p>
+    </section>
+    {% else %}
     <section class="panel">
       <h2>AI 3行サマリー</h2>
       <ol class="summary-list">
@@ -72,7 +103,31 @@
       <p class="lead"><strong>なぜ今話題なのか：</strong>{{ game.summary.why_now }}</p>
       <p class="lead"><strong>バズった経緯：</strong>{{ game.summary.buzz_story }}</p>
     </section>
+    {% endif %}
 
+    {% if game.summary.community_reaction %}
+    <div class="split">
+      <section class="panel">
+        <h2>3. ここが面白い＆人を選ぶポイント</h2>
+        <h3>面白いところ</h3>
+        <ul class="summary-list swamp">
+          {% for item in game.summary.swamp_points %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        <h3>人を選ぶところ</h3>
+        <ul class="summary-list caveat">
+          {% for item in game.summary.caveats %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>4. プレイヤーの評価とコミュニティの反応</h2>
+        <p class="lead">{{ game.summary.community_reaction }}</p>
+      </section>
+    </div>
+    {% else %}
     <div class="split">
       <section class="panel">
         <h2>プレイヤーが評価する沼ポイント</h2>
@@ -91,7 +146,24 @@
         </ul>
       </section>
     </div>
+    {% endif %}
 
+    {% if game.summary.verdict %}
+    <section class="panel">
+      <h2>5. 総評・こんな人におすすめ＆購入ガイド</h2>
+      <p class="lead">{{ game.summary.verdict }}</p>
+      {% if game.summary.specs_note %}
+      <p class="lead">{{ game.summary.specs_note }}</p>
+      {% endif %}
+      <p class="lead">{{ game.summary.language_note }}</p>
+      {% if game.pc_requirements %}
+      <p class="lead"><small>{{ game.pc_requirements }}</small></p>
+      {% endif %}
+      <div class="cta">
+        <a class="btn-primary" href="{{ game.steam_url }}" rel="noopener sponsored" target="_blank">Steam で見る</a>
+      </div>
+    </section>
+    {% else %}
     <section class="panel">
       <h2>動作環境・言語目安</h2>
       <p class="lead">{{ game.summary.specs_note }}</p>
@@ -100,6 +172,7 @@
       <p class="lead"><small>{{ game.pc_requirements }}</small></p>
       {% endif %}
     </section>
+    {% endif %}
 
     <section class="panel">
       <h2>公式ストア＆価格比較</h2>
