@@ -1,14 +1,15 @@
+{% import "_chrome.html" as chrome %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IndieGem | 隠れた名作と急上昇インディー</title>
-  <meta name="description" content="Steamの隠れた名作と急上昇インディーゲームを、多言語レビューから日本語で自動要約するメディア。同接・好評率・セールで探せます。">
+  <meta name="description" content="IndieGemは、遊びの手触りと向いている人の視点でインディーゲームを日本語レビューするメディアです。新着、同接の急上昇、好評率、セールから記事を探せます。">
   <link rel="canonical" href="{{ site_base_url }}/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="IndieGem | 隠れた名作と急上昇インディー">
-  <meta property="og:description" content="Steamインディーをデータベース型UIで俯瞼し、AIが日本語で要点を抽出します。">
+  <meta property="og:description" content="隠れた名作と急上昇インディーを、手触りと向いている人の視点で日本語レビューするメディア。">
   <meta property="og:url" content="{{ site_base_url }}/">
   <meta property="og:image" content="{{ og_image }}">
   <meta name="twitter:card" content="summary_large_image">
@@ -21,82 +22,132 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="index.html">
-        <img src="assets/favicon.svg" alt="">
-        <div>
-          <strong>IndieGem</strong>
-          <span>インディージェム</span>
-        </div>
-      </a>
-      <div class="updated">更新 {{ updated_at_jst }}</div>
-    </div>
-  </header>
+  {{ chrome.site_header("", updated_at_jst) }}
   <main class="wrap">
-    <section class="hero">
-      <h1>Steamの隠れた名作と、いま伸びているインディーを最速発掘。</h1>
-      <p>Steamの公開データとプレイヤーレビューを毎日収集し、新規タイトルは1日最大3本追加します。新着、同接の急上昇、好評率、セール割引で並べ替えて探せます。</p>
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Steamの隠れた名作と、いま伸びているインディーを文章で発掘する。</h1>
+      <p>IndieGemは、同時接続やセールの数字を並べるだけのカタログではなく、遊びの手触りと「誰に向くか」でインディーを選ぶメディアです。Steamの公開データとプレイヤーレビューを毎日読み、誇張しない日本語の記事にまとめています。埋もれた名作と、いま伸びている作品の見どころを、訪問したその場で読める文章として残します。</p>
+      <ul class="hero-points">
+        <li>選び方の軸は、コアループの手触りと、その作品が刺さる人です。売上順位の転載ではありません。</li>
+        <li>新規タイトルは1日最大3本。既存記事は同接・価格・好評率だけを毎日更新します。</li>
+        <li>一覧の各カードに要約、評価、掲載日を付け、記事を開く前に内容が分かるようにしています。</li>
+      </ul>
     </section>
-    <div class="toolbar">
-      <div class="sorts" role="group" aria-label="並び替え">
-        <button type="button" data-sort="newest" aria-pressed="true">新着順</button>
-        <button type="button" data-sort="rising" aria-pressed="false">同接急上昇順</button>
-        <button type="button" data-sort="rating" aria-pressed="false">好評率順</button>
-        <button type="button" data-sort="discount" aria-pressed="false">セール割引順</button>
+
+    <section class="featured" aria-labelledby="featured-heading">
+      <div class="section-head">
+        <h2 id="featured-heading">ピックアップ</h2>
+        <p>新着の注目作と、同接の伸びか評価で選んだもう1本を、リード文つきで大きく掲載しています。</p>
       </div>
-      <div class="filters">
-        <input type="search" data-search placeholder="タイトル / 開発元で検索" aria-label="検索">
-        <label><input type="checkbox" data-sale-only> セール中のみ</label>
+      <div class="featured-grid">
+        {% for item in featured %}
+        {% set g = item.game %}
+        <article class="feature-card">
+          <a class="feature-media" href="posts/{{ g.app_id }}.html">
+            <img
+              src="{{ g.header_image }}"
+              alt="{{ g.name }}のアイキャッチ"
+              width="460"
+              height="215"
+              {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+              decoding="async">
+            {% if g.discount_percent > 0 %}
+            <span class="badge">-{{ g.discount_percent }}%</span>
+            {% endif %}
+          </a>
+          <div class="feature-body">
+            <p class="feature-kicker">{{ item.kicker }}</p>
+            <h3><a href="posts/{{ g.app_id }}.html">{{ g.name }}</a></h3>
+            <ul class="badges">
+              {% for badge in game_badges(g) %}
+              <li>{{ badge }}</li>
+              {% endfor %}
+            </ul>
+            <p class="feature-lead">{{ game_lead(g) }}</p>
+            <p class="card-date">
+              {% if g.added_at_jst %}
+              <time datetime="{{ g.added_at or '' }}">掲載 {{ g.added_at_jst }}</time>
+              {% endif %}
+              {% if g.updated_at_jst and g.updated_at_jst != g.added_at_jst %}
+              <time datetime="{{ g.updated_at or '' }}">更新 {{ g.updated_at_jst }}</time>
+              {% endif %}
+            </p>
+            <a class="btn-primary" href="posts/{{ g.app_id }}.html">記事を読む<span class="sr-only">：{{ g.name }}</span></a>
+          </div>
+        </article>
+        {% endfor %}
       </div>
-    </div>
-    <p class="count"><span data-visible-count>{{ games|length }}</span> / {{ games|length }} タイトル</p>
+    </section>
+
     <aside class="ad-slot" aria-label="広告枠">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2075840815269276"
            crossorigin="anonymous"></script>
     </aside>
-    <section class="grid" data-game-grid>
-      {% for g in games %}
-      <article class="card"
-        data-ccu="{{ g.ccu }}"
-        data-ccu-delta="{{ g.ccu_delta }}"
-        data-positive="{{ g.positive_percent }}"
-        data-discount="{{ g.discount_percent }}"
-        data-added="{{ g.added_at }}"
-        data-name="{{ g.name }}"
-        data-developer="{{ g.developers|join(' ') }}">
-        <a href="posts/{{ g.app_id }}.html">
-          <div class="thumb">
-            <img src="{{ g.header_image }}" alt="{{ g.name }}">
+
+    <section class="catalog" aria-labelledby="catalog-heading">
+      <div class="section-head">
+        <h2 id="catalog-heading">掲載中のレビュー</h2>
+        <p>各カードは記事への入口です。サムネイルに加え、評価、80字以上の要約、掲載日を付けています。ジャンルはSteamのジャンルデータがある作品だけ表示します。新着・同接の急上昇・好評率・セール割引で並べ替えられます。</p>
+      </div>
+      <div class="toolbar">
+        <div class="sorts" role="group" aria-label="並び替え">
+          <button type="button" data-sort="newest" aria-pressed="true">新着順</button>
+          <button type="button" data-sort="rising" aria-pressed="false">同接急上昇順</button>
+          <button type="button" data-sort="rating" aria-pressed="false">好評率順</button>
+          <button type="button" data-sort="discount" aria-pressed="false">セール割引順</button>
+        </div>
+        <div class="filters">
+          <input type="search" data-search placeholder="タイトル / 開発元で検索" aria-label="検索">
+          <label><input type="checkbox" data-sale-only> セール中のみ</label>
+        </div>
+      </div>
+      <p class="count"><span data-visible-count>{{ games|length }}</span> / {{ games|length }} タイトル</p>
+      <div class="grid" data-game-grid>
+        {% for g in games %}
+        <article class="card"
+          data-ccu="{{ g.ccu }}"
+          data-ccu-delta="{{ g.ccu_delta }}"
+          data-positive="{{ g.positive_percent }}"
+          data-discount="{{ g.discount_percent }}"
+          data-added="{{ g.added_at }}"
+          data-name="{{ g.name }}"
+          data-developer="{{ g.developers|join(' ') }}">
+          <a class="thumb" href="posts/{{ g.app_id }}.html">
+            <img src="{{ g.header_image }}" alt="{{ g.name }}のアイキャッチ" width="460" height="215" loading="lazy" decoding="async">
             {% if g.discount_percent > 0 %}
-            <div class="badge">-{{ g.discount_percent }}%</div>
+            <span class="badge">-{{ g.discount_percent }}%</span>
             {% endif %}
-          </div>
+          </a>
           <div class="card-body">
-            <h2>{{ g.name }}</h2>
+            <ul class="badges">
+              {% for badge in game_badges(g) %}
+              <li>{{ badge }}</li>
+              {% endfor %}
+            </ul>
+            <h3><a href="posts/{{ g.app_id }}.html">{{ g.name }}</a></h3>
             <p class="dev">{{ g.developers|join(', ') or '開発元不明' }}</p>
             <div class="stats">
               <div class="stat"><b>{{ g.price_formatted }}</b><span>価格</span></div>
               <div class="stat"><b>{{ g.ccu_display }}</b><span>同接</span></div>
               <div class="stat"><b>{{ g.positive_percent }}%</b><span>{{ g.review_score_desc }}</span></div>
             </div>
-            <p class="excerpt">{{ g.summary.excerpt }}</p>
+            <p class="excerpt">{{ game_excerpt(g) }}</p>
+            <p class="card-date">
+              {% if g.added_at_jst %}
+              <time datetime="{{ g.added_at or '' }}">掲載 {{ g.added_at_jst }}</time>
+              {% endif %}
+              {% if g.updated_at_jst and g.updated_at_jst != g.added_at_jst %}
+              <time datetime="{{ g.updated_at or '' }}">更新 {{ g.updated_at_jst }}</time>
+              {% endif %}
+            </p>
+            <a class="read-more" href="posts/{{ g.app_id }}.html">続きを読む<span class="sr-only">：{{ g.name }}</span></a>
           </div>
-        </a>
-      </article>
-      {% endfor %}
+        </article>
+        {% endfor %}
+      </div>
     </section>
   </main>
-  <footer class="site-footer">
-    <div class="wrap">
-      <p class="copyright">&copy; 2026 IndieGem. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="about.html">当サイトについて / お問い合わせ</a></li>
-        <li><a href="privacy.html">プライバシーポリシー・免責事項</a></li>
-      </ul>
-      <p class="footer-disclaimer">Valve Corporation, Steam, and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
-    </div>
-  </footer>
+  {{ chrome.site_footer("") }}
   <script src="assets/app.js"></script>
 </body>
 </html>

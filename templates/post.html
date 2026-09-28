@@ -1,3 +1,4 @@
+{% import "_chrome.html" as chrome %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,18 +24,7 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="../index.html">
-        <img src="../assets/favicon.svg" alt="">
-        <div>
-          <strong>IndieGem</strong>
-          <span>インディージェム</span>
-        </div>
-      </a>
-      <div class="updated">更新 {{ game.updated_at_jst }}</div>
-    </div>
-  </header>
+  {{ chrome.site_header("../", game.updated_at_jst) }}
 
   <main class="wrap post">
     <nav class="crumb" aria-label="パンくずリスト">
@@ -189,15 +179,6 @@
     </aside>
     <a class="back" href="../index.html">トップへ戻る</a>
   </main>
-  <footer class="site-footer">
-    <div class="wrap">
-      <p class="copyright">&copy; 2026 IndieGem. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="../about.html">当サイトについて / お問い合わせ</a></li>
-        <li><a href="../privacy.html">プライバシーポリシー・免責事項</a></li>
-      </ul>
-      <p class="footer-disclaimer">Valve Corporation, Steam, and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
-    </div>
-  </footer>
+  {{ chrome.site_footer("../") }}
 </body>
 </html>

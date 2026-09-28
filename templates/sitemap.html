@@ -1,0 +1,53 @@
+{% import "_chrome.html" as chrome %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>サイトマップ | IndieGem</title>
+  <meta name="description" content="IndieGemの固定ページと掲載中レビュー記事への一覧です。">
+  <link rel="canonical" href="sitemap.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="サイトマップ | IndieGem">
+  <meta property="og:description" content="IndieGemの固定ページと掲載中レビュー記事への一覧です。">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  {{ chrome.site_header("") }}
+  <main class="wrap post legal">
+    <nav class="crumb" aria-label="パンくずリスト">
+      <a href="index.html">IndieGem</a>
+      <span>/</span>
+      <span>サイトマップ</span>
+    </nav>
+    <h1>サイトマップ</h1>
+    <p class="lead">固定ページと、掲載中のレビュー記事へのリンクです。検索エンジン向けのXMLは <a href="sitemap.xml">sitemap.xml</a> を公開しています。</p>
+    <section class="panel">
+      <h2>固定ページ</h2>
+      <ul class="summary-list">
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="about.html">About（当サイトについて）</a></li>
+        <li><a href="privacy.html">Privacy Policy（プライバシーポリシー）</a></li>
+        <li><a href="contact.html">Contact（お問い合わせ）</a></li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>レビュー記事（{{ games|length }}本）</h2>
+      <ul class="sitemap-list">
+        {% for g in games %}
+        <li>
+          <a href="posts/{{ g.app_id }}.html">{{ g.name }}</a>
+          <span>{{ g.added_at_jst or g.updated_at_jst }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <a class="back" href="index.html">トップへ戻る</a>
+  </main>
+  {{ chrome.site_footer("") }}
+</body>
+</html>

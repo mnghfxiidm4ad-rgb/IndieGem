@@ -1088,6 +1088,136 @@ def save_games(games: list[dict[str, Any]]) -> None:
     DATA_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def _clean_copy(value: Any) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def _clip_text(text: str, limit: int) -> str:
+    text = _clean_copy(text)
+    limit = max(1, int(limit))
+    if len(text) <= limit:
+        return text
+    clipped = text[: limit - 1].rstrip(" 、。・")
+    return f"{clipped}…"
+
+
+def _summary_of(game: dict[str, Any]) -> dict[str, Any]:
+    summary = game.get("summary")
+    return summary if isinstance(summary, dict) else {}
+
+
+def _copy_chunks(game: dict[str, Any]) -> list[str]:
+    summary = _summary_of(game)
+    chunks: list[str] = []
+    for key in ("excerpt", "why_now", "target_audience", "headline"):
+        text = _clean_copy(summary.get(key))
+        if text and text not in chunks:
+            chunks.append(text)
+    three = summary.get("three_line_summary") or []
+    if isinstance(three, list):
+        for item in three:
+            text = _clean_copy(item)
+            if text and text not in chunks:
+                chunks.append(text)
+    short = _clean_copy(game.get("short_description"))
+    if short and short not in chunks:
+        chunks.append(short)
+    if not chunks:
+        name = _clean_copy(game.get("name")) or "この作品"
+        chunks.append(
+            f"{name}の同時接続・好評率・価格を、Steamの公開データとレビューから日本語で整理した紹介です。"
+        )
+    return chunks
+
+
+def compose_copy(game: dict[str, Any], limit: int = 110, minimum: int = 80) -> str:
+    """Build a Japanese blurb from summary fields, then the store description."""
+    chunks = _copy_chunks(game)
+    text = chunks[0]
+    index = 1
+    while len(text) < int(minimum) and index < len(chunks):
+        nxt = chunks[index]
+        index += 1
+        if nxt in text:
+            continue
+        joiner = "" if text.endswith("。") else "。"
+        text = f"{text}{joiner}{nxt}"
+    return _clip_text(text, limit)
+
+
+def game_excerpt(game: dict[str, Any], limit: int = 110) -> str:
+    return compose_copy(game, limit=int(limit), minimum=min(80, int(limit)))
+
+
+def game_lead(game: dict[str, Any], limit: int = 160) -> str:
+    return compose_copy(game, limit=int(limit), minimum=min(140, int(limit)))
+
+
+def game_badges(game: dict[str, Any], limit: int = 4) -> list[str]:
+    badges: list[str] = []
+    tags = game.get("tags") or []
+    if isinstance(tags, list):
+        for tag in tags:
+            label = _clean_copy(tag)
+            if label and label not in badges:
+                badges.append(label)
+            if len(badges) >= 2:
+                break
+    score = _clean_copy(game.get("review_score_desc"))
+    if score:
+        badges.append(score)
+    if game.get("is_free"):
+        badges.append("無料")
+    else:
+        discount = int(game.get("discount_percent") or 0)
+        if discount > 0:
+            badges.append(f"{discount}% OFF")
+    if game.get("has_japanese"):
+        badges.append("日本語対応")
+    deduped: list[str] = []
+    for badge in badges:
+        if badge not in deduped:
+            deduped.append(badge)
+    if not deduped:
+        deduped.append("レビュー")
+    return deduped[: max(1, int(limit))]
+
+
+def pick_featured(games: list[dict[str, Any]], limit: int = 2) -> list[dict[str, Any]]:
+    """One newest article, plus a rising or highly rated second pick."""
+    pool = list(games)
+    if not pool or limit <= 0:
+        return []
+    newest = sorted(
+        pool,
+        key=lambda game: str(game.get("added_at") or game.get("updated_at") or ""),
+        reverse=True,
+    )
+    chosen: list[tuple[dict[str, Any], str]] = [(newest[0], "新着の注目")]
+    rest = [game for game in pool if game.get("app_id") != newest[0].get("app_id")]
+    if rest and limit > 1:
+        rising = [game for game in rest if int(game.get("ccu_delta") or 0) > 0]
+        if rising:
+            second = max(
+                rising,
+                key=lambda game: (
+                    int(game.get("ccu_delta") or 0),
+                    float(game.get("positive_percent") or 0),
+                ),
+            )
+            chosen.append((second, "同接が伸びている一本"))
+        else:
+            second = max(
+                rest,
+                key=lambda game: (
+                    float(game.get("positive_percent") or 0),
+                    int(game.get("ccu") or 0),
+                ),
+            )
+            chosen.append((second, "評価で選ぶ一本"))
+    return [{"game": game, "kicker": kicker} for game, kicker in chosen[:limit]]
+
+
 def copy_assets() -> None:
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -1097,10 +1227,14 @@ def copy_assets() -> None:
             if file.is_file():
                 shutil.copy2(file, ASSETS_DIR / file.name)
     (DOCS_DIR / ".nojekyll").write_text("", encoding="utf-8")
-    for name in ("about.html", "privacy.html"):
-        src_page = TEMPLATES_DIR / name
-        if src_page.exists():
-            shutil.copy2(src_page, DOCS_DIR / name)
+
+
+def render_static_pages(env: Environment) -> None:
+    for name in ("about.html", "privacy.html", "contact.html"):
+        if not (TEMPLATES_DIR / name).exists():
+            continue
+        html_out = env.get_template(name).render()
+        (DOCS_DIR / name).write_text(html_out, encoding="utf-8")
 
 
 def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
@@ -1109,6 +1243,10 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
         autoescape=select_autoescape(["html"]),
     )
+    env.globals["game_excerpt"] = game_excerpt
+    env.globals["game_lead"] = game_lead
+    env.globals["game_badges"] = game_badges
+    render_static_pages(env)
     ranked = sorted(
         games,
         key=lambda g: g.get("added_at") or g.get("updated_at") or "",
@@ -1117,6 +1255,7 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
     og_image = ranked[0]["header_image"] if ranked else f"{site_base_url}/assets/favicon.svg"
     index_html = env.get_template("index.html").render(
         games=ranked,
+        featured=pick_featured(ranked, limit=2),
         updated_at_jst=format_jst(),
         site_base_url=site_base_url,
         og_image=og_image,
@@ -1154,10 +1293,19 @@ def render_site(games: list[dict[str, Any]], site_base_url: str) -> None:
         )
         (POSTS_DIR / f"{game['app_id']}.html").write_text(html_out, encoding="utf-8")
 
+    if (TEMPLATES_DIR / "sitemap.html").exists():
+        sitemap_html = env.get_template("sitemap.html").render(
+            games=ranked,
+            updated_at_jst=format_jst(),
+        )
+        (DOCS_DIR / "sitemap.html").write_text(sitemap_html, encoding="utf-8")
+
     sitemap_urls = [
         f"{site_base_url}/",
         f"{site_base_url}/about.html",
         f"{site_base_url}/privacy.html",
+        f"{site_base_url}/contact.html",
+        f"{site_base_url}/sitemap.html",
     ] + [f"{site_base_url}/posts/{g['app_id']}.html" for g in ranked]
     urlset = "\n".join(f"  <url><loc>{html.escape(u)}</loc></url>" for u in sitemap_urls)
     (DOCS_DIR / "sitemap.xml").write_text(

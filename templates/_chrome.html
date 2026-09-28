@@ -1,0 +1,38 @@
+{% macro site_header(base, updated="") %}
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ base }}index.html">
+      <img src="{{ base }}assets/favicon.svg" alt="">
+      <div>
+        <strong>IndieGem</strong>
+        <span>インディージェム</span>
+      </div>
+    </a>
+    <nav class="site-nav" aria-label="主要ナビゲーション">
+      <a href="{{ base }}index.html">トップ</a>
+      <a href="{{ base }}about.html">当サイトについて</a>
+      <a href="{{ base }}contact.html">お問い合わせ</a>
+    </nav>
+    {% if updated %}
+    <div class="updated">更新 {{ updated }}</div>
+    {% endif %}
+  </div>
+</header>
+{% endmacro %}
+
+{% macro site_footer(base) %}
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">&copy; 2026 IndieGem. All rights reserved.</p>
+    <nav aria-label="フッター">
+      <ul class="footer-links">
+        <li><a href="{{ base }}about.html">About（当サイトについて）</a></li>
+        <li><a href="{{ base }}privacy.html">Privacy Policy（プライバシーポリシー）</a></li>
+        <li><a href="{{ base }}contact.html">Contact（お問い合わせ）</a></li>
+        <li><a href="{{ base }}sitemap.html">Sitemap（サイトマップ）</a></li>
+      </ul>
+    </nav>
+    <p class="footer-disclaimer">Valve Corporation, Steam, and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
+  </div>
+</footer>
+{% endmacro %}
